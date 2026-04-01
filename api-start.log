@@ -1,0 +1,13 @@
+MongoDB connected: mongodb://ananyanimkar03_db_user:****@ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net:27017,ac-qjfdcfp-shard-00-01.1okcn7n.mongodb.net:27017,ac-qjfdcfp-shard-00-02.1okcn7n.mongodb.net:27017/skillzee?ssl=true&replicaSet=atlas-hw5abk-shard-0&authSource=admin&retryWrites=true&w=majority
+Skillzee API listening on port 5000
+Allowed CORS origins: http://localhost:3000, https://skillzee.vercel.app
+[0mGET /health [32m200[0m 8.294 ms - 36[0m
+[0mPOST /api/auth/register [32m201[0m 1058.234 ms - 851[0m
+[0mPOST /api/auth/register [32m201[0m 871.564 ms - 844[0m
+[0mPOST /api/skills [32m201[0m 128.024 ms - 719[0m
+[0mPOST /api/bookings [32m201[0m 1659.791 ms - 1495[0m
+[0mPOST /api/chat/69cd59ac2ab0d28365085724/messages [32m201[0m 907.601 ms - 404[0m
+[0mPATCH /api/bookings/69cd59ac2ab0d28365085724/status [32m200[0m 317.951 ms - 546[0m
+[0mPOST /api/bookings/69cd59ac2ab0d28365085724/review [32m201[0m 532.044 ms - 339[0m
+[0mGET /api/notifications [32m200[0m 34.055 ms - 1300[0m
+[0mGET /api/payments/wallet [32m200[0m 185.668 ms - 618[0m

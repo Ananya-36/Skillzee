@@ -1,0 +1,187 @@
+C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\sdam\topology.js:327
+                const timeoutError = new error_1.MongoServerSelectionError(`Server selection timed out after ${timeout?.duration} ms`, this.description);
+                                     ^
+
+MongoServerSelectionError: E4540000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:openssl\ssl\record\rec_layer_s3.c:918:SSL alert number 80
+
+    at Topology.selectServer (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\sdam\topology.js:327:38)
+    at async tryOperation (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\operations\execute_operation.js:148:18)
+    at async executeOperation (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async FindCursor._initialize (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\cursor\abstract_cursor.js:632:27)
+    at async FindCursor.fetchBatch (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\cursor\abstract_cursor.js:666:13)
+    at async FindCursor.next (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\cursor\abstract_cursor.js:342:17)
+    at async [Symbol.asyncIterator] (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\cursor\abstract_cursor.js:250:34)
+    at async FindCursor.toArray (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\cursor\abstract_cursor.js:422:26)
+    at async model.Query._find (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:2430:14) {
+  errorLabelSet: Set(0) {},
+  reason: TopologyDescription {
+    type: 'ReplicaSetNoPrimary',
+    servers: Map(3) {
+      'ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net:27017' => ServerDescription {
+        address: 'ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net:27017',
+        type: 'Unknown',
+        hosts: [],
+        passives: [],
+        arbiters: [],
+        tags: {},
+        minWireVersion: 0,
+        maxWireVersion: 0,
+        roundTripTime: -1,
+        minRoundTripTime: 0,
+        lastUpdateTime: 4088017501,
+        lastWriteDate: 0,
+        error: MongoNetworkError: E4540000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:openssl\ssl\record\rec_layer_s3.c:918:SSL alert number 80
+        
+            at TLSSocket.<anonymous> (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\cmap\connect.js:286:44)
+            at Object.onceWrapper (node:events:623:26)
+            at TLSSocket.emit (node:events:508:28)
+            at emitErrorNT (node:internal/streams/destroy:170:8)
+            at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+            at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+          errorLabelSet: Set(1) { 'ResetPool' },
+          beforeHandshake: false,
+          [cause]: [Error: E4540000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:openssl\ssl\record\rec_layer_s3.c:918:SSL alert number 80
+          ] {
+            library: 'SSL routines',
+            reason: 'tlsv1 alert internal error',
+            code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+          }
+        },
+        topologyVersion: null,
+        setName: null,
+        setVersion: null,
+        electionId: null,
+        logicalSessionTimeoutMinutes: null,
+        maxMessageSizeBytes: null,
+        maxWriteBatchSize: null,
+        maxBsonObjectSize: null,
+        primary: null,
+        me: null,
+        '$clusterTime': null,
+        iscryptd: false
+      },
+      'ac-qjfdcfp-shard-00-01.1okcn7n.mongodb.net:27017' => ServerDescription {
+        address: 'ac-qjfdcfp-shard-00-01.1okcn7n.mongodb.net:27017',
+        type: 'Unknown',
+        hosts: [],
+        passives: [],
+        arbiters: [],
+        tags: {},
+        minWireVersion: 0,
+        maxWireVersion: 0,
+        roundTripTime: -1,
+        minRoundTripTime: 0,
+        lastUpdateTime: 4088017497,
+        lastWriteDate: 0,
+        error: MongoNetworkError: E4540000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:openssl\ssl\record\rec_layer_s3.c:918:SSL alert number 80
+        
+            at TLSSocket.<anonymous> (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\cmap\connect.js:286:44)
+            at Object.onceWrapper (node:events:623:26)
+            at TLSSocket.emit (node:events:508:28)
+            at emitErrorNT (node:internal/streams/destroy:170:8)
+            at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+            at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+          errorLabelSet: Set(1) { 'ResetPool' },
+          beforeHandshake: false,
+          [cause]: [Error: E4540000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:openssl\ssl\record\rec_layer_s3.c:918:SSL alert number 80
+          ] {
+            library: 'SSL routines',
+            reason: 'tlsv1 alert internal error',
+            code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+          }
+        },
+        topologyVersion: null,
+        setName: null,
+        setVersion: null,
+        electionId: null,
+        logicalSessionTimeoutMinutes: null,
+        maxMessageSizeBytes: null,
+        maxWriteBatchSize: null,
+        maxBsonObjectSize: null,
+        primary: null,
+        me: null,
+        '$clusterTime': null,
+        iscryptd: false
+      },
+      'ac-qjfdcfp-shard-00-02.1okcn7n.mongodb.net:27017' => ServerDescription {
+        address: 'ac-qjfdcfp-shard-00-02.1okcn7n.mongodb.net:27017',
+        type: 'Unknown',
+        hosts: [],
+        passives: [],
+        arbiters: [],
+        tags: {},
+        minWireVersion: 0,
+        maxWireVersion: 0,
+        roundTripTime: -1,
+        minRoundTripTime: 0,
+        lastUpdateTime: 4088017270,
+        lastWriteDate: 0,
+        error: MongoNetworkError: E4540000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:openssl\ssl\record\rec_layer_s3.c:918:SSL alert number 80
+        
+            at TLSSocket.<anonymous> (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\cmap\connect.js:286:44)
+            at Object.onceWrapper (node:events:623:26)
+            at TLSSocket.emit (node:events:508:28)
+            at emitErrorNT (node:internal/streams/destroy:170:8)
+            at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+            at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+          errorLabelSet: Set(1) { 'ResetPool' },
+          beforeHandshake: false,
+          [cause]: [Error: E4540000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:openssl\ssl\record\rec_layer_s3.c:918:SSL alert number 80
+          ] {
+            library: 'SSL routines',
+            reason: 'tlsv1 alert internal error',
+            code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+          }
+        },
+        topologyVersion: null,
+        setName: null,
+        setVersion: null,
+        electionId: null,
+        logicalSessionTimeoutMinutes: null,
+        maxMessageSizeBytes: null,
+        maxWriteBatchSize: null,
+        maxBsonObjectSize: null,
+        primary: null,
+        me: null,
+        '$clusterTime': null,
+        iscryptd: false
+      }
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: 'atlas-hw5abk-shard-0',
+    maxElectionId: ObjectId {
+      buffer: Buffer(12) [Uint8Array] [
+        127, 255, 255, 255, 0,
+          0,   0,   0,   0, 0,
+          0, 130
+      ]
+    },
+    maxSetVersion: 46,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  [cause]: MongoNetworkError: E4540000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:openssl\ssl\record\rec_layer_s3.c:918:SSL alert number 80
+  
+      at TLSSocket.<anonymous> (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\lib\cmap\connect.js:286:44)
+      at Object.onceWrapper (node:events:623:26)
+      at TLSSocket.emit (node:events:508:28)
+      at emitErrorNT (node:internal/streams/destroy:170:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    errorLabelSet: Set(1) { 'ResetPool' },
+    beforeHandshake: false,
+    [cause]: [Error: E4540000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:openssl\ssl\record\rec_layer_s3.c:918:SSL alert number 80
+    ] {
+      library: 'SSL routines',
+      reason: 'tlsv1 alert internal error',
+      code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+    }
+  }
+}
+
+Node.js v24.14.1

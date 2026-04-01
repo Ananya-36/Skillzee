@@ -1,0 +1,23 @@
+{
+  "name": "skillzee",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/web",
+    "apps/api"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace @skillzee/api\" \"npm run dev --workspace @skillzee/web\"",
+    "dev:web": "npm run dev --workspace @skillzee/web",
+    "dev:api": "npm run dev --workspace @skillzee/api",
+    "build": "npm run build --workspace @skillzee/api && npm run build --workspace @skillzee/web",
+    "lint": "npm run lint --workspace @skillzee/api && npm run lint --workspace @skillzee/web",
+    "seed": "npm run seed --workspace @skillzee/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
