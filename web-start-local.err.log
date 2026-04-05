@@ -1,0 +1,17 @@
+⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+npm error Lifecycle script `start` failed with error:
+npm error code 1
+npm error path C:\Users\lenovo\Desktop\skillzee\apps\web
+npm error workspace @skillzee/web@1.0.0
+npm error location C:\Users\lenovo\Desktop\skillzee\apps\web
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c next start

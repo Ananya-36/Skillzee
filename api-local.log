@@ -1,0 +1,36 @@
+
+> skillzee@1.0.0 dev:api
+> npm run dev --workspace @skillzee/api
+
+
+> @skillzee/api@1.0.0 dev
+> tsx watch src/server.ts
+
+MongoDB connected: mongodb://ananyanimkar03_db_user:****@ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net:27017,ac-qjfdcfp-shard-00-01.1okcn7n.mongodb.net:27017,ac-qjfdcfp-shard-00-02.1okcn7n.mongodb.net:27017/skillzee?ssl=true&replicaSet=atlas-hw5abk-shard-0&authSource=admin&retryWrites=true&w=majority
+SkillSwap API listening on port 5000
+Allowed CORS origins: http://localhost:3000, https://skillzee.vercel.app
+[0mGET /api/skills/trending [32m200[0m 1596.721 ms - 838[0m
+[0mGET /api/skills/trending [32m200[0m 511.160 ms - 838[0m
+[0mGET /api/skills/leaderboard [32m200[0m 255.271 ms - 303[0m
+[0mGET /api/skills/trending [32m200[0m 513.635 ms - 838[0m
+[0mGET /api/skills/leaderboard [32m200[0m 255.422 ms - 303[0m
+[0mGET /api/skills/trending [32m200[0m 302.893 ms - 838[0m
+[0mGET /api/skills?sort=trending [32m200[0m 109.851 ms - 838[0m
+[0mGET /api/skills?sort=trending [32m200[0m 120.161 ms - 838[0m
+[0mGET /api/skills?sort=trending [32m200[0m 100.579 ms - 838[0m
+[0mGET /api/skills?sort=trending [32m200[0m 107.552 ms - 838[0m
+[0mGET /api/admin/overview [32m200[0m 547.867 ms - 926[0m
+[0mGET /api/admin/overview [32m200[0m 1336.591 ms - 926[0m
+[0mPOST /api/auth/register [33m400[0m 10.029 ms - 139[0m
+[0mGET /api/skills/skill-2 [31m500[0m 62.699 ms - 34[0m
+[0mGET /api/skills/skill-2 [31m500[0m 2.868 ms - 34[0m
+11:11:17 pm [tsx] change in ./src\server.ts Restarting...
+c11:11:24 pm [tsx] change in ./src\services\socket.service.ts Restarting...
+cMongoDB connected: mongodb://ananyanimkar03_db_user:****@ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net:27017,ac-qjfdcfp-shard-00-01.1okcn7n.mongodb.net:27017,ac-qjfdcfp-shard-00-02.1okcn7n.mongodb.net:27017/skillzee?ssl=true&replicaSet=atlas-hw5abk-shard-0&authSource=admin&retryWrites=true&w=majority
+SkillSwap API listening on port 5000
+Allowed CORS origins: http://localhost:3000, https://skillzee.vercel.app
+[0mPOST /api/auth/register [32m201[0m 1295.985 ms - 896[0m
+[0mGET /api/skills/trending [0m-[0m - ms - -[0m
+[0mGET /api/skills/leaderboard [0m-[0m - ms - -[0m
+[0mGET /api/skills/leaderboard [0m-[0m - ms - -[0m
+[0mGET /api/skills/trending [0m-[0m - ms - -[0m

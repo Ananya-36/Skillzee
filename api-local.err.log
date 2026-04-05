@@ -1,0 +1,717 @@
+CastError: Cast to ObjectId failed for value "skill-2" (type string) at path "_id" for model "Skill"
+    at SchemaObjectId.cast (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaType.applySetters (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaType.castForQuery (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async <anonymous> (C:\Users\lenovo\Desktop\skillzee\apps\api\src\routes\skills.ts:116:19) {
+  stringValue: '"skill-2"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: 'skill-2',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (C:\Users\lenovo\Desktop\skillzee\node_modules\bson\src\objectid.ts:120:15)
+      at castObjectId (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\cast\objectid.js:25:12)
+      at SchemaObjectId.cast (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\schema\objectId.js:251:12)
+      at SchemaType.applySetters (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\schemaType.js:1288:12)
+      at SchemaType.castForQuery (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\schemaType.js:1724:17)
+      at cast (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\cast.js:390:32)
+      at Query.cast (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:5060:12)
+      at Query._castConditions (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:2374:10)
+      at model.Query._findOne (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:2697:8)
+      at model.Query.exec (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:4627:80),
+  valueType: 'string'
+}
+CastError: Cast to ObjectId failed for value "skill-2" (type string) at path "_id" for model "Skill"
+    at SchemaObjectId.cast (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaType.applySetters (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaType.castForQuery (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async <anonymous> (C:\Users\lenovo\Desktop\skillzee\apps\api\src\routes\skills.ts:116:19) {
+  stringValue: '"skill-2"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: 'skill-2',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (C:\Users\lenovo\Desktop\skillzee\node_modules\bson\src\objectid.ts:120:15)
+      at castObjectId (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\cast\objectid.js:25:12)
+      at SchemaObjectId.cast (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\schema\objectId.js:251:12)
+      at SchemaType.applySetters (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\schemaType.js:1288:12)
+      at SchemaType.castForQuery (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\schemaType.js:1724:17)
+      at cast (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\cast.js:390:32)
+      at Query.cast (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:5060:12)
+      at Query._castConditions (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:2374:10)
+      at model.Query._findOne (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:2697:8)
+      at model.Query.exec (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:4627:80),
+  valueType: 'string'
+}
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3002
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3003
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3003
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3003
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3003
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3003
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3003
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+[2026-04-04T17:20:55.867Z] [PID: 9788] [32m[NODE-CRON][32m [33m[WARN][0m missed execution at Sat Apr 04 2026 21:00:00 GMT+0530 (India Standard Time)! Possible blocking IO or high CPU user at the same process used by node-cron.
+[2026-04-04T17:20:55.879Z] [PID: 9788] [32m[NODE-CRON][32m [33m[WARN][0m missed execution at Sat Apr 04 2026 21:30:00 GMT+0530 (India Standard Time)! Possible blocking IO or high CPU user at the same process used by node-cron.
+[2026-04-04T17:20:55.885Z] [PID: 9788] [32m[NODE-CRON][32m [33m[WARN][0m missed execution at Sat Apr 04 2026 22:00:00 GMT+0530 (India Standard Time)! Possible blocking IO or high CPU user at the same process used by node-cron.
+[2026-04-04T17:20:55.892Z] [PID: 9788] [32m[NODE-CRON][32m [33m[WARN][0m missed execution at Sat Apr 04 2026 22:30:00 GMT+0530 (India Standard Time)! Possible blocking IO or high CPU user at the same process used by node-cron.
+Error: CORS blocked for origin: http://localhost:3004
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3004
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3004
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3004
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3004
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3004
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3004
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+Error: CORS blocked for origin: http://localhost:3004
+    at origin (C:\Users\lenovo\Desktop\skillzee\apps\api\src\server.ts:27:23)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\lenovo\Desktop\skillzee\node_modules\cors\lib\index.js:204:7)
+    at Layer.handleRequest (C:\Users\lenovo\Desktop\skillzee\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:342:13)
+    at C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:297:9
+    at processParams (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:582:12)
+    at next (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\lenovo\Desktop\skillzee\node_modules\router\index.js:186:3)
+MongoServerSelectionError: getaddrinfo ENOTFOUND ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net
+    at Topology.selectServer (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\sdam\topology.ts:635:30)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at process.processTimers (node:internal/timers:541:7)
+    at async tryOperation (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\operations\execute_operation.ts:202:16)
+    at async executeOperation (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\operations\execute_operation.ts:119:12)
+    at async FindCursor._initialize (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:949:21)
+    at async FindCursor.fetchBatch (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:987:7)
+    at async FindCursor.next (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:608:9) {
+  errorLabelSet: Set(0) {},
+  reason: TopologyDescription {
+    type: 'ReplicaSetNoPrimary',
+    servers: Map(3) {
+      'ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net:27017' => [ServerDescription],
+      'ac-qjfdcfp-shard-00-01.1okcn7n.mongodb.net:27017' => [ServerDescription],
+      'ac-qjfdcfp-shard-00-02.1okcn7n.mongodb.net:27017' => [ServerDescription]
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: 'atlas-hw5abk-shard-0',
+    maxElectionId: new ObjectId('7fffffff0000000000000083'),
+    maxSetVersion: 46,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  [cause]: MongoNetworkError: getaddrinfo ENOTFOUND ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net
+      at TLSSocket.<anonymous> (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cmap\connect.ts:395:16)
+      at Object.onceWrapper (node:events:623:26)
+      at TLSSocket.emit (node:events:508:28)
+      at emitErrorNT (node:internal/streams/destroy:170:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    errorLabelSet: Set(1) { 'ResetPool' },
+    beforeHandshake: false,
+    [cause]: Error: getaddrinfo ENOTFOUND ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net'
+    }
+  }
+}
+MongoServerSelectionError: getaddrinfo ENOTFOUND ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net
+    at Topology.selectServer (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\sdam\topology.ts:635:30)
+    at async tryOperation (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\operations\execute_operation.ts:202:16)
+    at async executeOperation (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\operations\execute_operation.ts:119:12)
+    at async FindCursor._initialize (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:949:21)
+    at async FindCursor.fetchBatch (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:987:7)
+    at async FindCursor.next (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:608:9)
+    at async FindCursor.[Symbol.asyncIterator] (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:502:26)
+    at async FindCursor.toArray (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:696:22)
+    at async model.Query._find (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:2430:14) {
+  errorLabelSet: Set(0) {},
+  reason: TopologyDescription {
+    type: 'ReplicaSetNoPrimary',
+    servers: Map(3) {
+      'ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net:27017' => [ServerDescription],
+      'ac-qjfdcfp-shard-00-01.1okcn7n.mongodb.net:27017' => [ServerDescription],
+      'ac-qjfdcfp-shard-00-02.1okcn7n.mongodb.net:27017' => [ServerDescription]
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: 'atlas-hw5abk-shard-0',
+    maxElectionId: new ObjectId('7fffffff0000000000000083'),
+    maxSetVersion: 46,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  [cause]: MongoNetworkError: getaddrinfo ENOTFOUND ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net
+      at TLSSocket.<anonymous> (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cmap\connect.ts:395:16)
+      at Object.onceWrapper (node:events:623:26)
+      at TLSSocket.emit (node:events:508:28)
+      at emitErrorNT (node:internal/streams/destroy:170:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    errorLabelSet: Set(1) { 'ResetPool' },
+    beforeHandshake: false,
+    [cause]: Error: getaddrinfo ENOTFOUND ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net'
+    }
+  }
+}
+MongoServerSelectionError: getaddrinfo ENOTFOUND ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net
+    at Topology.selectServer (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\sdam\topology.ts:635:30)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at process.processTimers (node:internal/timers:541:7)
+    at async tryOperation (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\operations\execute_operation.ts:202:16)
+    at async executeOperation (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\operations\execute_operation.ts:119:12)
+    at async FindCursor._initialize (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:949:21)
+    at async FindCursor.fetchBatch (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:987:7)
+    at async FindCursor.next (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:608:9) {
+  errorLabelSet: Set(0) {},
+  reason: TopologyDescription {
+    type: 'ReplicaSetNoPrimary',
+    servers: Map(3) {
+      'ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net:27017' => [ServerDescription],
+      'ac-qjfdcfp-shard-00-01.1okcn7n.mongodb.net:27017' => [ServerDescription],
+      'ac-qjfdcfp-shard-00-02.1okcn7n.mongodb.net:27017' => [ServerDescription]
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: 'atlas-hw5abk-shard-0',
+    maxElectionId: new ObjectId('7fffffff0000000000000083'),
+    maxSetVersion: 46,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  [cause]: MongoNetworkError: getaddrinfo ENOTFOUND ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net
+      at TLSSocket.<anonymous> (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cmap\connect.ts:395:16)
+      at Object.onceWrapper (node:events:623:26)
+      at TLSSocket.emit (node:events:508:28)
+      at emitErrorNT (node:internal/streams/destroy:170:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    errorLabelSet: Set(1) { 'ResetPool' },
+    beforeHandshake: false,
+    [cause]: Error: getaddrinfo ENOTFOUND ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net'
+    }
+  }
+}
+MongoServerSelectionError: getaddrinfo ENOTFOUND ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net
+    at Topology.selectServer (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\sdam\topology.ts:635:30)
+    at async tryOperation (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\operations\execute_operation.ts:202:16)
+    at async executeOperation (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\operations\execute_operation.ts:119:12)
+    at async FindCursor._initialize (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\find_cursor.ts:92:22)
+    at async FindCursor.cursorInit (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:949:21)
+    at async FindCursor.fetchBatch (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:987:7)
+    at async FindCursor.next (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:608:9)
+    at async FindCursor.[Symbol.asyncIterator] (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:502:26)
+    at async FindCursor.toArray (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cursor\abstract_cursor.ts:696:22)
+    at async model.Query._find (C:\Users\lenovo\Desktop\skillzee\node_modules\mongoose\lib\query.js:2430:14) {
+  errorLabelSet: Set(0) {},
+  reason: TopologyDescription {
+    type: 'ReplicaSetNoPrimary',
+    servers: Map(3) {
+      'ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net:27017' => [ServerDescription],
+      'ac-qjfdcfp-shard-00-01.1okcn7n.mongodb.net:27017' => [ServerDescription],
+      'ac-qjfdcfp-shard-00-02.1okcn7n.mongodb.net:27017' => [ServerDescription]
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: 'atlas-hw5abk-shard-0',
+    maxElectionId: new ObjectId('7fffffff0000000000000083'),
+    maxSetVersion: 46,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  [cause]: MongoNetworkError: getaddrinfo ENOTFOUND ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net
+      at TLSSocket.<anonymous> (C:\Users\lenovo\Desktop\skillzee\node_modules\mongodb\src\cmap\connect.ts:395:16)
+      at Object.onceWrapper (node:events:623:26)
+      at TLSSocket.emit (node:events:508:28)
+      at emitErrorNT (node:internal/streams/destroy:170:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    errorLabelSet: Set(1) { 'ResetPool' },
+    beforeHandshake: false,
+    [cause]: Error: getaddrinfo ENOTFOUND ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'ac-qjfdcfp-shard-00-00.1okcn7n.mongodb.net'
+    }
+  }
+}
+[2026-04-04T18:33:18.527Z] [PID: 25032] [32m[NODE-CRON][32m [33m[WARN][0m missed execution at Sun Apr 05 2026 00:00:00 GMT+0530 (India Standard Time)! Possible blocking IO or high CPU user at the same process used by node-cron.

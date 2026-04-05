@@ -1,0 +1,8 @@
+
+> @skillzee/web@1.0.0 start
+> next start --port 3002
+
+▲ Next.js 16.2.2
+- Local:         http://localhost:3002
+- Network:       http://10.144.30.62:3002
+✓ Ready in 597ms

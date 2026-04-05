@@ -1,0 +1,68 @@
+
+> skillzee@1.0.0 dev:web
+> npm run dev --workspace @skillzee/web
+
+
+> @skillzee/web@1.0.0 dev
+> next dev --turbopack
+
+▲ Next.js 16.2.2 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.144.30.62:3000
+- Environments: .env.local
+✓ Ready in 2.2s
+Creating turbopack project {
+  dir: 'C:\\Users\\lenovo\\Desktop\\skillzee\\apps\\web',
+  testMode: true
+}
+
+○ Compiling / ...
+ GET / 200 in 10.8s (next.js: 9.4s, application-code: 1431ms)
+ HEAD / 200 in 334ms (next.js: 25ms, application-code: 310ms)
+ GET / 200 in 361ms (next.js: 9ms, application-code: 352ms)
+ GET /how-it-works 200 in 1717ms (next.js: 1431ms, application-code: 286ms)
+ GET / 200 in 779ms (next.js: 15ms, application-code: 764ms)
+ GET / 200 in 376ms (next.js: 9ms, application-code: 367ms)
+ GET /manifest.webmanifest 200 in 1767ms (next.js: 1694ms, application-code: 74ms)
+ GET /manifest.webmanifest 200 in 30ms (next.js: 7ms, application-code: 23ms)
+ GET /explore 200 in 1023ms (next.js: 941ms, application-code: 82ms)
+ GET /manifest.webmanifest 200 in 20ms (next.js: 10ms, application-code: 10ms)
+ GET /explore 200 in 51ms (next.js: 8ms, application-code: 43ms)
+ GET /manifest.webmanifest 200 in 11ms (next.js: 4ms, application-code: 7ms)
+ GET /profile 200 in 996ms (next.js: 922ms, application-code: 74ms)
+ GET /manifest.webmanifest 200 in 17ms (next.js: 5ms, application-code: 12ms)
+ GET /explore 200 in 46ms (next.js: 6ms, application-code: 39ms)
+ GET /manifest.webmanifest 200 in 13ms (next.js: 4ms, application-code: 8ms)
+ GET /how-it-works 200 in 84ms (next.js: 8ms, application-code: 76ms)
+ GET /manifest.webmanifest 200 in 15ms (next.js: 5ms, application-code: 10ms)
+ GET /chat 200 in 983ms (next.js: 923ms, application-code: 59ms)
+ GET /manifest.webmanifest 200 in 16ms (next.js: 7ms, application-code: 9ms)
+ GET /admin 200 in 882ms (next.js: 809ms, application-code: 73ms)
+ GET /manifest.webmanifest 200 in 16ms (next.js: 5ms, application-code: 11ms)
+ GET /auth 200 in 937ms (next.js: 875ms, application-code: 62ms)
+ GET /manifest.webmanifest 200 in 18ms (next.js: 6ms, application-code: 12ms)
+ GET /profile 200 in 49ms (next.js: 9ms, application-code: 40ms)
+ GET /manifest.webmanifest 200 in 15ms (next.js: 5ms, application-code: 9ms)
+ GET /profile 200 in 69ms (next.js: 6ms, application-code: 63ms)
+ GET /manifest.webmanifest 200 in 9ms (next.js: 3ms, application-code: 6ms)
+ GET /profile 200 in 54ms (next.js: 5ms, application-code: 49ms)
+ GET /manifest.webmanifest 200 in 10ms (next.js: 5ms, application-code: 5ms)
+ GET /skills/skill-2 200 in 2.0s (next.js: 1829ms, application-code: 211ms)
+ GET /skills/skill-2 200 in 108ms (next.js: 35ms, application-code: 73ms)
+ GET /manifest.webmanifest 200 in 16ms (next.js: 5ms, application-code: 11ms)
+✓ Compiled in 236ms
+ GET /skills/skill-2 200 in 549ms (next.js: 168ms, application-code: 381ms)
+ GET /skills/skill-2 200 in 844ms (next.js: 14ms, application-code: 830ms)
+ GET /skills/skill-2 200 in 663ms (next.js: 36ms, application-code: 627ms)
+ GET /skills/skill-2 200 in 663ms (next.js: 184ms, application-code: 479ms)
+ GET /skills/skill-2 200 in 663ms (next.js: 299ms, application-code: 364ms)
+ GET /skills/skill-2 200 in 663ms (next.js: 417ms, application-code: 246ms)
+ GET /skills/skill-2 200 in 224ms (next.js: 12ms, application-code: 213ms)
+ GET /skills/skill-2 200 in 103ms (next.js: 15ms, application-code: 88ms)
+ GET /manifest.webmanifest 200 in 128ms (next.js: 97ms, application-code: 31ms)
+✓ Compiled in 88ms
+ GET /skills/skill-2 200 in 411ms (next.js: 182ms, application-code: 229ms)
+ GET /skills/skill-2 200 in 143ms (next.js: 11ms, application-code: 132ms)
+ GET /manifest.webmanifest 200 in 130ms (next.js: 95ms, application-code: 35ms)
+✓ Compiled in 74ms
+✓ Compiled in 38ms
