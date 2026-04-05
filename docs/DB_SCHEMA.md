@@ -1,55 +1,68 @@
-# Skillzee Database Schema
+# SkillSwap Database Schema
 
-## Collections
+This repo currently uses Mongoose models rather than Prisma.
 
-### Users
+## Core model files
 
-- Identity: name, email, phone, college, passwordHash
-- Profile: bio, avatarUrl, interests, rolePreference
-- Wallet: availableBalance, pendingBalance, totalEarnings, totalSpent
-- Gamification: badges, points
-- Favorites: skill references
-- Push subscriptions
+- `apps/api/src/models/User.ts`
+- `apps/api/src/models/Skill.ts`
+- `apps/api/src/models/Booking.ts`
+- `apps/api/src/models/Review.ts`
+- `apps/api/src/models/Message.ts`
+- `apps/api/src/models/Notification.ts`
+- `apps/api/src/models/Payment.ts`
 
-### Skills
+## Users
 
-- Title, description, category, price, durationMinutes
-- Delivery mode: online/offline
-- Session access: Google Meet or in-app video
-- Trainer reference
-- Rating summary, tags, seats, featured/trending metadata
+- Identity: `name`, `email`, `phone`, `whatsAppNumber`, `passwordHash`, `college`
+- Profile: `bio`, `avatarUrl`, `rolePreference`, `interests`, `skills`
+- Trust and gamification: `badges`, `points`, `trainerProfile.averageRating`, `trainerProfile.totalReviews`, `trainerProfile.completedSessions`
+- Wallet: `availableBalance`, `pendingBalance`, `totalEarnings`, `totalSpent`
+- Saved marketplace items: `favoriteSkills`
+- Delivery: `pushSubscriptions`
 
-### Bookings
+## Skills
 
-- Learner, trainer, skill
-- Scheduled time
-- Price split: total, commission, trainer payout
-- Status lifecycle
-- Contact methods
-- Session link or video room id
+- Ownership: `trainer`
+- Marketplace fields: `title`, `description`, `category`, `price`, `durationMinutes`
+- Discovery fields: `tags`, `outcomes`, `isFeatured`, `ratingAverage`, `ratingCount`, `bookingsCount`, `savesCount`
+- Session delivery: `mode`, `location`, `sessionType`, `meetLink`, `availability`, `seats`
 
-### Reviews
+## Bookings
 
-- Booking reference
-- Learner and trainer references
-- Rating and review text
+- References: `skill`, `learner`, `trainer`
+- Schedule: `scheduledAt`, `notes`, `reminderSentAt`
+- Lifecycle: `status`, `paymentStatus`
+- Money split: `amount`, `platformCommission`, `trainerPayout`
+- Delivery: `sessionType`, `sessionLink`, `videoRoomId`
 
-### Messages
+This model powers the booking API route that also triggers realtime dashboard events, notification records, and automated email confirmations.
 
-- Booking reference
-- Sender, recipient
-- Message body, attachments, timestamps
+## Reviews
 
-### Notifications
+- References: `booking`, `skill`, `learner`, `trainer`
+- Feedback: `rating`, `comment`
 
-- User reference
-- Type, title, body, action URL
-- Read state
-- Metadata payload
+## Messages
 
-### Payments
+- References: `booking`, `sender`, `recipient`
+- Content: `content`
 
-- Booking reference
-- Payer, payee
-- Amount, commission, payout
-- Status, provider, transaction references
+## Notifications
+
+- References: `user`
+- Message payload: `type`, `title`, `body`, `actionUrl`, `metadata`
+- Read state: `readAt`
+
+## Payments
+
+- References: `booking`, `payer`, `payee`
+- Gateway simulation: `provider`, `transactionId`
+- Money split: `amount`, `commission`, `payout`
+- Status: `status`
+
+## Mock data
+
+- Seed script: `apps/api/src/utils/seed.ts`
+- Root command: `npm run mock-data`
+- Sample data includes learner and provider accounts, featured skills, a confirmed booking, and a simulated payment trail for presentations

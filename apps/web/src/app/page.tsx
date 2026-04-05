@@ -2,13 +2,23 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, BadgeIndianRupee, Bot, BrainCircuit, ChartNoAxesCombined, Medal, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeIndianRupee,
+  Bot,
+  BrainCircuit,
+  CalendarCheck2,
+  ChartNoAxesCombined,
+  Medal,
+  ShieldCheck
+} from "lucide-react";
 import { MetricCard } from "@/components/ui/metric-card";
 import { SectionTitle } from "@/components/ui/section-title";
 import { SkillCard } from "@/components/ui/skill-card";
 import { apiRequest } from "@/lib/api";
 import { fallbackSkills } from "@/lib/mock-data";
 import { formatCurrency } from "@/lib/format";
+import { getAvatarSrc, uniqueStrings } from "@/lib/presentation";
 import type { Skill, User } from "@/types";
 
 const fallbackLeaderboard: User[] = fallbackSkills.map((skill) => skill.trainer);
@@ -32,10 +42,10 @@ export default function HomePage() {
       <section className="container hero">
         <div>
           <span className="eyebrow">Peer learning marketplace for students</span>
-          <h1>Turn campus skills into trusted sessions, earnings, and momentum.</h1>
+          <h1>Turn student talent into bookable classes, trust, and real side income.</h1>
           <p>
-            Skillzee helps students teach and learn from each other through affordable paid sessions,
-            real-time chat, smart WhatsApp handoff, ratings, certificates, and a commission-first
+            SkillSwap helps students teach and learn from each other through affordable paid sessions,
+            real-time chat, WhatsApp handoff, calendar booking, ratings, certificates, and a commission-first
             marketplace that feels like a real startup product.
           </p>
           <div className="hero__actions">
@@ -44,24 +54,24 @@ export default function HomePage() {
               <ArrowRight size={16} />
             </Link>
             <Link href="/auth" className="button button--ghost">
-              Join as learner or trainer
+              Join as learner or provider
             </Link>
           </div>
           <div className="cards-grid" style={{ marginTop: 28 }}>
             <MetricCard label="Platform commission" value="20%" detail="Transparent split on every booking." />
-            <MetricCard label="Trainer payout on ₹300" value={formatCurrency(240)} detail="Skillzee keeps ₹60." />
+            <MetricCard label="Trainer payout on INR 300" value={formatCurrency(240)} detail="SkillSwap keeps INR 60." />
             <MetricCard label="Communication" value="3 modes" detail="In-app chat, WhatsApp, and email fallback." />
           </div>
         </div>
         <div className="hero__visual">
           <article className="floating-card">
             <span className="eyebrow">Trending now</span>
-            <h3>Design, analytics, speaking, and interview prep</h3>
+            <h3>Design, analytics, speaking, video editing, and interview prep</h3>
             <p>Students book short, practical sessions that solve a real need in one sitting.</p>
             <div className="pill-row">
               <span className="pill">Figma</span>
               <span className="pill">Python</span>
-              <span className="pill">Communication</span>
+              <span className="pill">Video Editing</span>
             </div>
           </article>
           <article className="floating-card">
@@ -70,7 +80,7 @@ export default function HomePage() {
           </article>
           <article className="floating-card">
             <h3>Smart contact handoff</h3>
-            <p>Open the WhatsApp app when available and fall back to WhatsApp Web automatically.</p>
+            <p>Every class links directly into a prefilled WhatsApp chat for faster coordination.</p>
           </article>
         </div>
       </section>
@@ -91,18 +101,52 @@ export default function HomePage() {
       </section>
 
       <section className="section">
+        <div className="container">
+          <SectionTitle
+            eyebrow="How it works"
+            title="A clean flow for first-time learners and first-time trainers"
+            description="Onboarding, booking, communication, payment simulation, and completion are built into one student-friendly path."
+          />
+          <div className="cards-grid">
+            {[
+              {
+                icon: <ShieldCheck size={18} />,
+                title: "Create one dual profile",
+                copy: "Join once, save your bio, WhatsApp number, interests, and skills, then switch between learner and provider views."
+              },
+              {
+                icon: <CalendarCheck2 size={18} />,
+                title: "Book with calendar slots",
+                copy: "Pick a time, simulate Razorpay or UPI payment, and trigger instant notifications and email confirmations."
+              },
+              {
+                icon: <Bot size={18} />,
+                title: "Learn with AI guidance",
+                copy: "Use the assistant bubble to discover classes like video editing when you already like design."
+              }
+            ].map((item) => (
+              <article key={item.title} className="glass-card">
+                <div className="pill">{item.icon}{item.title}</div>
+                <p>{item.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
         <div className="container split-layout">
           <div className="panel">
             <SectionTitle
               eyebrow="Why it works"
               title="Built for the way students actually coordinate"
-              description="Skillzee covers trust, booking, communication, and proof of value in one flow."
+              description="SkillSwap covers trust, booking, communication, and proof of value in one flow."
             />
             <div className="stack">
               {[
                 {
                   icon: <ShieldCheck size={18} />,
-                  title: "Verified learner-to-trainer flow",
+                  title: "Verified learner-to-provider flow",
                   copy: "Bookings connect real students through profiles, reviews, and confirmed sessions."
                 },
                 {
@@ -113,7 +157,7 @@ export default function HomePage() {
                 {
                   icon: <Bot size={18} />,
                   title: "AI-style recommendations",
-                  copy: "Learners discover sessions based on interests, saved skills, and booking behavior."
+                  copy: "Learners discover sessions based on interests, saved skills, booking behavior, and adjacent skill mapping."
                 }
               ].map((item) => (
                 <article key={item.title} className="glass-card">
@@ -167,7 +211,7 @@ export default function HomePage() {
             {leaders.slice(0, 3).map((trainer) => (
               <article key={trainer._id} className="panel">
                 <div className="skill-card__trainer">
-                  <img src={trainer.avatarUrl} alt={trainer.name} />
+                  <img src={getAvatarSrc(trainer.name, trainer.avatarUrl)} alt={trainer.name} />
                   <div>
                     <h3>{trainer.name}</h3>
                     <p>{trainer.college}</p>
@@ -175,8 +219,8 @@ export default function HomePage() {
                 </div>
                 <p>{trainer.bio}</p>
                 <div className="pill-row">
-                  {trainer.badges.slice(0, 3).map((badge) => (
-                    <span key={badge} className="pill">
+                  {uniqueStrings(trainer.badges).slice(0, 3).map((badge, index) => (
+                    <span key={`${badge}-${index}`} className="pill">
                       {badge}
                     </span>
                   ))}

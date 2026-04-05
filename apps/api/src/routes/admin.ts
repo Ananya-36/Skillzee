@@ -23,7 +23,11 @@ router.get(
           }
         }
       ]),
-      Skill.find().sort({ bookingsCount: -1, ratingAverage: -1 }).limit(5).lean()
+      Skill.find()
+        .sort({ bookingsCount: -1, ratingAverage: -1 })
+        .limit(5)
+        .populate("trainer", "name email phone whatsAppNumber avatarUrl college bio trainerProfile badges skills")
+        .lean()
     ]);
 
     res.json({

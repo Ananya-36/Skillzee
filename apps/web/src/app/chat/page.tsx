@@ -116,7 +116,7 @@ function ChatPageContent() {
     <section className="container page-header">
       <div className="page-header">
         <span className="eyebrow">Realtime chat</span>
-        <h1>Talk inside Skillzee before switching to WhatsApp or email.</h1>
+        <h1>Talk inside SkillSwap before switching to WhatsApp or email.</h1>
       </div>
 
       <div className="chat-layout">

@@ -9,7 +9,6 @@ import {
   type PropsWithChildren
 } from "react";
 import { apiRequest } from "@/lib/api";
-import { fallbackUser } from "@/lib/mock-data";
 import type { User } from "@/types";
 
 type AuthContextValue = {
@@ -36,7 +35,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
     const storedToken = window.localStorage.getItem(TOKEN_KEY);
 
     if (!storedToken) {
-      setUser(fallbackUser);
+      setUser(null);
       setLoading(false);
       return;
     }
@@ -47,14 +46,14 @@ export function AuthProvider({ children }: PropsWithChildren) {
       .catch(() => {
         window.localStorage.removeItem(TOKEN_KEY);
         setToken(null);
-        setUser(fallbackUser);
+        setUser(null);
       })
       .finally(() => setLoading(false));
   }, []);
 
   async function refreshUser() {
     if (!token) {
-      setUser(fallbackUser);
+      setUser(null);
       return;
     }
 

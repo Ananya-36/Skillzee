@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
+import { env } from "../config/env.js";
 import { asyncHandler } from "../lib/async-handler.js";
 import { AppError } from "../lib/app-error.js";
 import { requireAuth } from "../middleware/auth.js";
@@ -10,8 +11,10 @@ import { Review } from "../models/Review.js";
 import { Skill } from "../models/Skill.js";
 import { User } from "../models/User.js";
 import { generateCertificatePdf } from "../services/certificate.service.js";
+import { sendBookingConfirmationEmail } from "../services/email.service.js";
 import { createNotification } from "../services/notification.service.js";
 import { sendUpcomingSessionReminders } from "../services/reminder.service.js";
+import { emitToUser } from "../services/socket.service.js";
 import { calculateCommission } from "../utils/commission.js";
 
 const router = Router();
@@ -19,7 +22,8 @@ const router = Router();
 const createBookingSchema = z.object({
   skillId: z.string().min(1),
   scheduledAt: z.coerce.date(),
-  notes: z.string().optional().default("")
+  notes: z.string().optional().default(""),
+  paymentMethod: z.enum(["RAZORPAY_UPI", "UPI_COLLECT", "SKILLSWAP_WALLET"]).default("RAZORPAY_UPI")
 });
 
 const statusSchema = z.object({
@@ -31,12 +35,35 @@ const reviewSchema = z.object({
   comment: z.string().optional().default("")
 });
 
+function formatBookingDate(date: Date) {
+  return new Intl.DateTimeFormat("en-IN", {
+    dateStyle: "medium",
+    timeStyle: "short"
+  }).format(date);
+}
+
+function getPaymentMethodLabel(method: z.infer<typeof createBookingSchema>["paymentMethod"]) {
+  if (method === "UPI_COLLECT") {
+    return "UPI Collect Simulation";
+  }
+
+  if (method === "SKILLSWAP_WALLET") {
+    return "SkillSwap Wallet Simulation";
+  }
+
+  return "Razorpay / UPI Simulation";
+}
+
+function buildDashboardUrl(bookingId: string) {
+  return `${env.CLIENT_URL}/dashboard?booking=${bookingId}`;
+}
+
 router.post(
   "/",
   requireAuth,
   asyncHandler(async (req, res) => {
     const input = createBookingSchema.parse(req.body);
-    const skill = await Skill.findById(input.skillId).populate("trainer", "name email");
+    const skill = await Skill.findById(input.skillId).populate("trainer", "name email phone whatsAppNumber");
 
     if (!skill) {
       throw new AppError("Skill not found", 404);
@@ -53,10 +80,20 @@ router.post(
     }
 
     const { amount, platformCommission, trainerPayout } = calculateCommission(skill.price);
+    const scheduledLabel = formatBookingDate(input.scheduledAt);
+    const paymentMethodLabel = getPaymentMethodLabel(input.paymentMethod);
+    const sessionLink = skill.sessionType === "GOOGLE_MEET" ? skill.meetLink || "https://meet.google.com/new" : "";
+    const trainerPreview = skill.trainer as unknown as {
+      _id: string;
+      name: string;
+      email: string;
+      phone?: string;
+      whatsAppNumber?: string;
+    };
     const booking = await Booking.create({
       skill: skill._id,
       learner: learner._id,
-      trainer: skill.trainer._id,
+      trainer: trainerPreview._id,
       scheduledAt: input.scheduledAt,
       notes: input.notes,
       amount,
@@ -65,7 +102,7 @@ router.post(
       status: "CONFIRMED",
       paymentStatus: "PAID",
       sessionType: skill.sessionType,
-      sessionLink: skill.sessionType === "GOOGLE_MEET" ? skill.meetLink : "",
+      sessionLink,
       videoRoomId: skill.sessionType === "IN_APP" ? `skillzee-${uuidv4()}` : ""
     });
 
@@ -75,7 +112,7 @@ router.post(
     learner.wallet.totalSpent += amount;
     await learner.save();
 
-    const trainer = await User.findById(skill.trainer._id);
+    const trainer = await User.findById(trainerPreview._id);
 
     if (trainer) {
       trainer.wallet.pendingBalance += trainerPayout;
@@ -85,37 +122,92 @@ router.post(
     await Payment.create({
       booking: booking._id,
       payer: learner._id,
-      payee: skill.trainer._id,
+      payee: trainerPreview._id,
       amount,
       commission: platformCommission,
       payout: trainerPayout,
+      provider: paymentMethodLabel,
       transactionId: `SKZ-${Date.now()}`
     });
 
+    const populated = await booking.populate([
+      {
+        path: "skill",
+        populate: {
+          path: "trainer",
+          select: "name avatarUrl phone whatsAppNumber email college bio trainerProfile badges skills"
+        }
+      },
+      { path: "learner", select: "name avatarUrl college phone whatsAppNumber email skills interests" },
+      { path: "trainer", select: "name avatarUrl college phone whatsAppNumber email skills interests" }
+    ]);
+
+    const bookingActionUrl = `/dashboard?booking=${booking._id}`;
+    const dashboardUrl = buildDashboardUrl(String(booking._id));
+
     await Promise.all([
       createNotification({
-        userId: String(skill.trainer._id),
+        userId: String(trainerPreview._id),
         type: "BOOKING",
         title: "New booking received",
-        body: `${learner.name} booked your ${skill.title} session.`,
-        actionUrl: `/dashboard?booking=${booking._id}`,
-        emailSubject: "New Skillzee booking"
+        body: `${learner.name} booked your ${skill.title} session for ${scheduledLabel}.`,
+        actionUrl: bookingActionUrl,
+        metadata: {
+          bookingId: String(booking._id),
+          skillId: String(skill._id),
+          paymentMethod: paymentMethodLabel
+        },
+        emailSubject: "New SkillSwap booking"
       }),
       createNotification({
         userId: String(learner._id),
         type: "BOOKING",
         title: "Booking confirmed",
-        body: `Your ${skill.title} session is confirmed.`,
-        actionUrl: `/dashboard?booking=${booking._id}`,
-        emailSubject: "Your Skillzee booking is confirmed"
+        body: `Your ${skill.title} session is confirmed for ${scheduledLabel}.`,
+        actionUrl: bookingActionUrl,
+        metadata: {
+          bookingId: String(booking._id),
+          skillId: String(skill._id),
+          paymentMethod: paymentMethodLabel
+        },
+        emailSubject: "Your SkillSwap booking is confirmed"
+      }),
+      sendBookingConfirmationEmail({
+        audience: "trainer",
+        to: trainer?.email ?? trainerPreview.email,
+        recipientName: trainer?.name ?? trainerPreview.name,
+        otherPartyName: learner.name,
+        otherPartyRoleLabel: "learner",
+        otherPartyWhatsAppNumber: learner.whatsAppNumber || learner.phone,
+        skillTitle: skill.title,
+        scheduledAtLabel: scheduledLabel,
+        paymentMethodLabel,
+        amount,
+        platformCommission,
+        trainerPayout,
+        dashboardUrl,
+        sessionLink
+      }),
+      sendBookingConfirmationEmail({
+        audience: "learner",
+        to: learner.email,
+        recipientName: learner.name,
+        otherPartyName: trainer?.name ?? trainerPreview.name,
+        otherPartyRoleLabel: "trainer",
+        otherPartyWhatsAppNumber: trainer?.whatsAppNumber || trainer?.phone || trainerPreview.whatsAppNumber || trainerPreview.phone,
+        skillTitle: skill.title,
+        scheduledAtLabel: scheduledLabel,
+        paymentMethodLabel,
+        amount,
+        platformCommission,
+        trainerPayout,
+        dashboardUrl,
+        sessionLink
       })
     ]);
 
-    const populated = await booking.populate([
-      { path: "skill", populate: { path: "trainer", select: "name avatarUrl phone email college bio trainerProfile" } },
-      { path: "learner", select: "name avatarUrl college" },
-      { path: "trainer", select: "name avatarUrl college phone email" }
-    ]);
+    emitToUser(String(trainerPreview._id), "booking:new", populated);
+    emitToUser(String(learner._id), "booking:new", populated);
 
     res.status(201).json(populated);
   })
@@ -138,8 +230,8 @@ router.get(
     const bookings = await Booking.find(query)
       .sort({ scheduledAt: 1 })
       .populate("skill", "title category price sessionType meetLink")
-      .populate("learner", "name avatarUrl college phone email")
-      .populate("trainer", "name avatarUrl college phone email")
+      .populate("learner", "name avatarUrl college phone whatsAppNumber email skills")
+      .populate("trainer", "name avatarUrl college phone whatsAppNumber email skills")
       .lean();
 
     res.json(bookings);
@@ -189,6 +281,11 @@ router.patch(
       { status: input.status === "COMPLETED" ? "RELEASED" : "PAID" }
     );
 
+    const updatedBooking = await Booking.findById(booking._id)
+      .populate("skill", "title category price sessionType meetLink")
+      .populate("learner", "name avatarUrl college phone whatsAppNumber email skills")
+      .populate("trainer", "name avatarUrl college phone whatsAppNumber email skills");
+
     await Promise.all([
       createNotification({
         userId: String(booking.learner),
@@ -208,6 +305,13 @@ router.patch(
         actionUrl: `/dashboard?booking=${booking._id}`
       })
     ]);
+
+    if (updatedBooking) {
+      emitToUser(String(booking.learner), "booking:updated", updatedBooking);
+      emitToUser(String(booking.trainer), "booking:updated", updatedBooking);
+      res.json(updatedBooking);
+      return;
+    }
 
     res.json(booking);
   })

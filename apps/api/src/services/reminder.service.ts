@@ -27,7 +27,7 @@ export async function sendUpcomingSessionReminders() {
         title: "Session reminder",
         body: `${skillTitle} starts within 24 hours.`,
         actionUrl: `/dashboard?booking=${booking._id}`,
-        emailSubject: "Upcoming Skillzee session reminder"
+        emailSubject: "Upcoming SkillSwap session reminder"
       }),
       createNotification({
         userId: String(booking.trainer),
@@ -35,7 +35,7 @@ export async function sendUpcomingSessionReminders() {
         title: "Upcoming learner session",
         body: `You have a ${skillTitle} booking within 24 hours.`,
         actionUrl: `/dashboard?booking=${booking._id}`,
-        emailSubject: "Upcoming Skillzee trainer session reminder"
+        emailSubject: "Upcoming SkillSwap trainer session reminder"
       })
     ]);
 

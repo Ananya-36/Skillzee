@@ -1,10 +1,10 @@
-# Skillzee
+# SkillSwap
 
-Skillzee is a production-ready peer-to-peer student skill learning marketplace where learners book affordable sessions from student trainers, chat in real time, connect through WhatsApp or email, and manage bookings, reviews, earnings, wallets, badges, and certificates.
+SkillSwap is a peer-to-peer student marketplace where learners book affordable sessions from student trainers, chat in real time, connect through WhatsApp or email, and manage bookings, reviews, earnings, wallets, badges, and certificates.
 
 ## Stack
 
-- Frontend: Next.js 16 App Router + TypeScript + modern dark UI
+- Frontend: Next.js 16 App Router + TypeScript + modern dark and light UI
 - Backend: Node.js + Express + TypeScript + Socket.io
 - Database: MongoDB Atlas with Mongoose
 - Auth: JWT
@@ -47,6 +47,12 @@ copy apps\web\.env.example apps\web\.env.local
 npm run seed
 ```
 
+You can also use the presentation-friendly alias:
+
+```bash
+npm run mock-data
+```
+
 5. Run both apps:
 
 ```bash
@@ -63,9 +69,9 @@ npm run dev
 - JWT auth with learner, trainer, or dual-role profiles
 - Skill discovery, filtering, favorites, trending, and AI-style recommendations
 - Session booking with 20% platform commission and trainer wallet tracking
-- Real-time chat, notifications, and WebRTC signaling support
+- Real-time chat, dashboard booking events, notifications, and WebRTC signaling support
 - WhatsApp smart redirection with pre-filled booking message
-- Email fallback using `mailto`
+- Nodemailer confirmations for bookings plus `mailto` fallback links
 - Ratings and reviews restricted to booked learners
 - Leaderboards, badges, points, and certificate PDF generation
 - Admin dashboard with marketplace metrics

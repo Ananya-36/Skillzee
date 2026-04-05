@@ -6,6 +6,7 @@ export type SkillDocument = {
   title: string;
   description: string;
   category: string;
+  outcomes: string[];
   tags: string[];
   price: number;
   durationMinutes: number;
@@ -30,6 +31,7 @@ const skillSchema = new Schema<SkillDocument>(
     title: { type: String, required: true, trim: true },
     description: { type: String, required: true },
     category: { type: String, required: true, trim: true },
+    outcomes: [{ type: String }],
     tags: [{ type: String }],
     price: { type: Number, required: true, min: 0 },
     durationMinutes: { type: Number, required: true, min: 15 },

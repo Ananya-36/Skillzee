@@ -1,20 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Mail } from "lucide-react";
 import { SkillCard } from "@/components/ui/skill-card";
+import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 import { apiRequest } from "@/lib/api";
+import { buildEmailLink } from "@/lib/communication";
 import { fallbackSkills, fallbackUser } from "@/lib/mock-data";
+import { getAvatarSrc, uniqueStrings } from "@/lib/presentation";
 import { useAuth } from "@/hooks/use-auth";
-import type { User } from "@/types";
+import type { Skill, User } from "@/types";
 
 export default function ProfilePage() {
   const { token, user, setUser } = useAuth();
   const [message, setMessage] = useState("");
   const [profile, setProfile] = useState<User>(user ?? fallbackUser);
+  const [suggestedSkills, setSuggestedSkills] = useState<Skill[]>(fallbackSkills);
 
   useEffect(() => {
     setProfile(user ?? fallbackUser);
   }, [user]);
+
+  useEffect(() => {
+    if (!token) {
+      setSuggestedSkills(fallbackSkills);
+      return;
+    }
+
+    void apiRequest<Skill[]>("/skills/recommended", { token })
+      .then((data) => setSuggestedSkills(data.length ? data : fallbackSkills))
+      .catch(() => setSuggestedSkills(fallbackSkills));
+  }, [token]);
 
   async function handleSave(formData: FormData) {
     if (!token) {
@@ -29,9 +45,19 @@ export default function ProfilePage() {
         body: JSON.stringify({
           name: formData.get("name"),
           phone: formData.get("phone"),
+          whatsAppNumber: formData.get("whatsAppNumber"),
           college: formData.get("college"),
           bio: formData.get("bio"),
-          avatarUrl: formData.get("avatarUrl")
+          avatarUrl: formData.get("avatarUrl"),
+          rolePreference: formData.get("rolePreference"),
+          interests: String(formData.get("interests"))
+            .split(",")
+            .map((item) => item.trim())
+            .filter(Boolean),
+          skills: String(formData.get("skills"))
+            .split(",")
+            .map((item) => item.trim())
+            .filter(Boolean)
         })
       });
 
@@ -43,21 +69,26 @@ export default function ProfilePage() {
     }
   }
 
+  const trainerWhatsApp = profile.whatsAppNumber || profile.phone;
+
   return (
     <section className="container page-header">
       <div className="profile-grid">
         <article className="panel stack">
           <div className="skill-card__trainer">
-            <img src={profile.avatarUrl} alt={profile.name} className="avatar" />
+            <img src={getAvatarSrc(profile.name, profile.avatarUrl)} alt={profile.name} className="avatar" />
             <div>
-              <h1>{profile.name}</h1>
+              <div className="inline-name">
+                <h1>{profile.name}</h1>
+                <WhatsAppLink phone={trainerWhatsApp} skillTitle="SkillSwap profile" iconOnly />
+              </div>
               <p>{profile.college}</p>
             </div>
           </div>
           <p>{profile.bio}</p>
           <div className="pill-row">
-            {profile.badges.map((badge) => (
-              <span key={badge} className="pill">
+            {uniqueStrings(profile.badges).map((badge, index) => (
+              <span key={`${badge}-${index}`} className="pill">
                 {badge}
               </span>
             ))}
@@ -66,6 +97,51 @@ export default function ProfilePage() {
             <span>{profile.points} points</span>
             <span>{profile.rolePreference}</span>
             <span>{profile.trainerProfile.completedSessions} sessions</span>
+            <span>{profile.trainerProfile.averageRating.toFixed(1)} avg rating</span>
+          </div>
+          <div className="cards-grid">
+            <article className="timeline-card">
+              <h3>Learner mode</h3>
+              <p>Use this same profile to discover classes, save interests, review sessions, and download certificates.</p>
+            </article>
+            <article className="timeline-card">
+              <h3>Provider mode</h3>
+              <p>Showcase your skills, badges, WhatsApp contact, session history, and future payout credibility.</p>
+            </article>
+          </div>
+          <div className="stack">
+            <div>
+              <strong>Skills</strong>
+              <div className="pill-row" style={{ marginTop: 12 }}>
+                {uniqueStrings(profile.skills ?? []).map((skill, index) => (
+                  <span key={`${skill}-${index}`} className="pill">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <strong>Interests</strong>
+              <div className="pill-row" style={{ marginTop: 12 }}>
+                {uniqueStrings(profile.interests ?? []).map((interest, index) => (
+                  <span key={`${interest}-${index}`} className="pill">
+                    {interest}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="panel-actions">
+            <WhatsAppLink phone={trainerWhatsApp} skillTitle="SkillSwap profile" label="WhatsApp" />
+            <a
+              className="button button--ghost"
+              href={buildEmailLink(profile.email, "SkillSwap profile enquiry", `Hi ${profile.name}, I found your profile on SkillSwap.`)}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Mail size={16} />
+              Email
+            </a>
           </div>
           <form
             className="form-grid"
@@ -85,6 +161,20 @@ export default function ProfilePage() {
             </div>
             <div className="form-grid form-grid--two">
               <label>
+                WhatsApp number
+                <input name="whatsAppNumber" defaultValue={profile.whatsAppNumber} />
+              </label>
+              <label>
+                Role preference
+                <select name="rolePreference" defaultValue={profile.rolePreference}>
+                  <option value="LEARNER">Learner</option>
+                  <option value="TRAINER">Provider</option>
+                  <option value="BOTH">Both</option>
+                </select>
+              </label>
+            </div>
+            <div className="form-grid form-grid--two">
+              <label>
                 College
                 <input name="college" defaultValue={profile.college} />
               </label>
@@ -97,6 +187,16 @@ export default function ProfilePage() {
               Bio
               <textarea name="bio" defaultValue={profile.bio} />
             </label>
+            <div className="form-grid form-grid--two">
+              <label>
+                Interests
+                <input name="interests" defaultValue={profile.interests.join(", ")} />
+              </label>
+              <label>
+                Skills
+                <input name="skills" defaultValue={(profile.skills ?? []).join(", ")} />
+              </label>
+            </div>
             <button className="button button--primary" type="submit">
               Save profile
             </button>
@@ -105,9 +205,9 @@ export default function ProfilePage() {
         </article>
 
         <article className="panel stack">
-          <h2>Saved and suggested skills</h2>
-          <p className="muted">Your profile is ready for both learner and trainer journeys.</p>
-          {fallbackSkills.map((skill) => (
+          <h2>Suggested classes for your current interests</h2>
+          <p className="muted">This area doubles as your learner view even if you also teach on the platform.</p>
+          {suggestedSkills.slice(0, 3).map((skill) => (
             <SkillCard key={skill._id} skill={skill} compact />
           ))}
         </article>

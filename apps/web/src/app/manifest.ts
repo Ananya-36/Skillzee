@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Skillzee",
-    short_name: "Skillzee",
+    name: "SkillSwap",
+    short_name: "SkillSwap",
     description: "Where skills create value",
     start_url: "/",
     display: "standalone",

@@ -1,45 +1,36 @@
-import { DEFAULT_WHATSAPP_MESSAGE } from "./config";
+import { buildWhatsAppInterestMessage, DEFAULT_GOOGLE_MEET_URL } from "./config";
 
 function normalizePhone(phone: string) {
   return phone.replace(/[^\d]/g, "");
 }
 
-export function buildWhatsAppLinks(phone: string, message = DEFAULT_WHATSAPP_MESSAGE) {
+export function buildWhatsAppLink(phone: string, skillTitle: string) {
   const normalized = normalizePhone(phone);
-  const encoded = encodeURIComponent(message);
+  const encoded = encodeURIComponent(buildWhatsAppInterestMessage(skillTitle));
 
-  return {
-    app: `whatsapp://send?phone=${normalized}&text=${encoded}`,
-    mobileWeb: `https://wa.me/${normalized}?text=${encoded}`,
-    desktopWeb: `https://web.whatsapp.com/send?phone=${normalized}&text=${encoded}`
-  };
+  return `https://wa.me/${normalized}?text=${encoded}`;
 }
 
-export function openWhatsAppChat(phone: string, message?: string) {
+export function openWhatsAppChat(phone: string, skillTitle: string) {
   if (typeof window === "undefined") {
     return;
   }
 
-  const links = buildWhatsAppLinks(phone, message);
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(window.navigator.userAgent);
-  let didHide = false;
-
-  const handleVisibility = () => {
-    if (document.hidden) {
-      didHide = true;
-    }
-  };
-
-  document.addEventListener("visibilitychange", handleVisibility, { once: true });
-  window.location.href = links.app;
-
-  window.setTimeout(() => {
-    if (!didHide) {
-      window.open(isMobile ? links.mobileWeb : links.desktopWeb, "_blank", "noopener,noreferrer");
-    }
-  }, 1100);
+  window.open(buildWhatsAppLink(phone, skillTitle), "_blank", "noopener,noreferrer");
 }
 
 export function buildEmailLink(email: string, subject: string, body: string) {
-  return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const params = new URLSearchParams({
+    view: "cm",
+    fs: "1",
+    to: email,
+    su: subject,
+    body
+  });
+
+  return `https://mail.google.com/mail/?${params.toString()}`;
+}
+
+export function buildMeetingLink(link?: string) {
+  return link?.trim() ? link : DEFAULT_GOOGLE_MEET_URL;
 }

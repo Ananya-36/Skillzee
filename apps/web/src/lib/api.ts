@@ -6,11 +6,13 @@ type RequestOptions = RequestInit & {
 
 export class ApiError extends Error {
   status: number;
+  details?: Record<string, unknown>;
 
-  constructor(message: string, status: number) {
+  constructor(message: string, status: number, details?: Record<string, unknown>) {
     super(message);
     this.name = "ApiError";
     this.status = status;
+    this.details = details;
   }
 }
 
@@ -29,8 +31,8 @@ export async function apiRequest<T>(path: string, options: RequestOptions = {}) 
   });
 
   if (!response.ok) {
-    const errorBody = await response.json().catch(() => ({ message: "Request failed" }));
-    throw new ApiError(errorBody.message ?? "Request failed", response.status);
+    const errorBody = (await response.json().catch(() => ({ message: "Request failed" }))) as Record<string, unknown>;
+    throw new ApiError(String(errorBody.message ?? "Request failed"), response.status, errorBody);
   }
 
   return (await response.json()) as T;

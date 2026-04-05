@@ -1,16 +1,13 @@
 import type { Server as HttpServer } from "node:http";
 import { Server } from "socket.io";
 import type { Socket } from "socket.io";
-import { env } from "../config/env.js";
+import { getAllowedOrigins } from "../lib/origins.js";
 import { verifyToken } from "../utils/jwt.js";
 
 let io: Server | null = null;
 
 export function createSocketServer(server: HttpServer) {
-  const allowedOrigins = (env.CLIENT_URLS ?? env.CLIENT_URL)
-    .split(",")
-    .map((origin) => origin.trim())
-    .filter(Boolean);
+  const allowedOrigins = getAllowedOrigins();
 
   io = new Server(server, {
     cors: {

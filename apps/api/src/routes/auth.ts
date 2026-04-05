@@ -13,12 +13,14 @@ const registerSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
   phone: z.string().min(8),
+  whatsAppNumber: z.string().min(8).optional(),
   college: z.string().min(2),
   password: z.string().min(8),
   bio: z.string().optional().default(""),
   avatarUrl: z.string().url().optional().or(z.literal("")).default(""),
   rolePreference: z.enum(["LEARNER", "TRAINER", "BOTH"]).default("BOTH"),
-  interests: z.array(z.string()).optional().default([])
+  interests: z.array(z.string()).optional().default([]),
+  skills: z.array(z.string()).optional().default([])
 });
 
 const loginSchema = z.object({
@@ -29,11 +31,13 @@ const loginSchema = z.object({
 const profileSchema = z.object({
   name: z.string().min(2).optional(),
   phone: z.string().min(8).optional(),
+  whatsAppNumber: z.string().min(8).optional(),
   college: z.string().min(2).optional(),
   bio: z.string().optional(),
   avatarUrl: z.string().url().optional().or(z.literal("")),
   rolePreference: z.enum(["LEARNER", "TRAINER", "BOTH"]).optional(),
-  interests: z.array(z.string()).optional()
+  interests: z.array(z.string()).optional(),
+  skills: z.array(z.string()).optional()
 });
 
 router.post(
@@ -50,8 +54,14 @@ router.post(
     const user = await User.create({
       ...input,
       email: input.email.toLowerCase(),
+      whatsAppNumber: input.whatsAppNumber ?? input.phone,
       passwordHash,
-      badges: input.rolePreference === "TRAINER" ? ["Early Educator"] : ["Curious Learner"]
+      badges:
+        input.rolePreference === "TRAINER"
+          ? ["Top Trainer", "Early Educator"]
+          : input.rolePreference === "BOTH"
+            ? ["Top Trainer", "Fast Learner"]
+            : ["Fast Learner"]
     });
 
     const token = signToken({
@@ -103,7 +113,13 @@ router.patch(
   requireAuth,
   asyncHandler(async (req, res) => {
     const input = profileSchema.parse(req.body);
-    const user = await User.findByIdAndUpdate(req.user!.sub, input, {
+    const updatePayload: Record<string, unknown> = { ...input };
+
+    if (input.whatsAppNumber || input.phone) {
+      updatePayload.whatsAppNumber = input.whatsAppNumber ?? input.phone;
+    }
+
+    const user = await User.findByIdAndUpdate(req.user!.sub, updatePayload, {
       new: true
     });
 

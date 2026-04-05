@@ -13,18 +13,20 @@ async function seed() {
 
   const passwordHash = await bcrypt.hash("Skillzee123", 12);
 
-  const [trainerOne, trainerTwo, learner] = await User.create([
+  const [trainerOne, trainerTwo, trainerThree, learner] = await User.create([
     {
       name: "Aarav Mehta",
       email: "aarav@skillzee.app",
       phone: "919876543210",
+      whatsAppNumber: "919876543210",
       college: "IIT Delhi",
       passwordHash,
       bio: "UI/UX mentor helping students ship portfolio-ready projects.",
       avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
       rolePreference: "TRAINER",
       interests: ["design", "figma", "product strategy"],
-      badges: ["Top Mentor", "Fast Responder"],
+      skills: ["Figma", "Brand Systems", "Video Editing"],
+      badges: ["Top Trainer", "Fast Responder"],
       points: 420,
       trainerProfile: {
         averageRating: 4.9,
@@ -42,13 +44,15 @@ async function seed() {
       name: "Nisha Verma",
       email: "nisha@skillzee.app",
       phone: "919812345678",
+      whatsAppNumber: "919812345678",
       college: "BITS Pilani",
       passwordHash,
       bio: "Data science trainer focused on real projects, dashboards, and interview prep.",
       avatarUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80",
       rolePreference: "BOTH",
       interests: ["python", "machine learning", "analytics"],
-      badges: ["Rising Star"],
+      skills: ["Python", "Dashboards", "Excel Storytelling"],
+      badges: ["Top Trainer", "Rising Star"],
       points: 260,
       trainerProfile: {
         averageRating: 4.8,
@@ -63,16 +67,44 @@ async function seed() {
       }
     },
     {
+      name: "Kabir Sethi",
+      email: "kabir@skillzee.app",
+      phone: "919955110022",
+      whatsAppNumber: "919955110022",
+      college: "NMIMS Mumbai",
+      passwordHash,
+      bio: "Creator mentor helping students make sharper reels, edits, and personal brand videos.",
+      avatarUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80",
+      rolePreference: "TRAINER",
+      interests: ["content creation", "design"],
+      skills: ["Video Editing", "Premiere Pro", "Motion Storytelling"],
+      badges: ["Top Trainer"],
+      points: 310,
+      trainerProfile: {
+        averageRating: 4.7,
+        totalReviews: 12,
+        completedSessions: 21
+      },
+      wallet: {
+        availableBalance: 2700,
+        pendingBalance: 500,
+        totalEarnings: 5900,
+        totalSpent: 0
+      }
+    },
+    {
       name: "Riya Sharma",
       email: "riya@skillzee.app",
       phone: "919900112233",
+      whatsAppNumber: "919900112233",
       college: "Delhi University",
       passwordHash,
-      bio: "Marketing student learning product, design, and analytics.",
+      bio: "Marketing student learning product, design, analytics, and creator skills.",
       avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80",
-      rolePreference: "LEARNER",
+      rolePreference: "BOTH",
       interests: ["design", "analytics", "public speaking"],
-      badges: ["Curious Learner"],
+      skills: ["Canva", "Social Media Basics"],
+      badges: ["Fast Learner"],
       points: 130,
       wallet: {
         availableBalance: 0,
@@ -90,6 +122,7 @@ async function seed() {
       description:
         "Learn how to structure a SaaS dashboard, create a design system, and turn rough ideas into recruiter-ready interfaces.",
       category: "Design",
+      outcomes: ["video editing", "portfolio", "branding"],
       tags: ["figma", "ui", "portfolio"],
       price: 499,
       durationMinutes: 90,
@@ -110,6 +143,7 @@ async function seed() {
       description:
         "Build a portfolio-worthy analytics dashboard using Python, Pandas, and Streamlit while learning storytelling with data.",
       category: "Data Science",
+      outcomes: ["analytics", "excel", "dashboard storytelling"],
       tags: ["python", "streamlit", "analytics"],
       price: 399,
       durationMinutes: 75,
@@ -124,23 +158,25 @@ async function seed() {
       isFeatured: true
     },
     {
-      trainer: trainerOne._id,
-      title: "Pitching and Public Speaking for Student Founders",
+      trainer: trainerThree._id,
+      title: "Video Editing for Reels and Portfolios",
       description:
-        "Practice confidence, story flow, and pitch delivery with live feedback tailored for hackathons, clubs, and internships.",
-      category: "Communication",
-      tags: ["pitching", "public speaking", "confidence"],
-      price: 299,
+        "Edit faster in Premiere Pro or CapCut, add motion polish, and publish cleaner content for reels and portfolios.",
+      category: "Creative",
+      outcomes: ["design", "content creation", "motion design"],
+      tags: ["video editing", "premiere pro", "content"],
+      price: 449,
       durationMinutes: 60,
       mode: "ONLINE",
       sessionType: "GOOGLE_MEET",
       meetLink: "https://meet.google.com/new",
-      availability: ["Sun 4 PM"],
+      availability: ["Thu 7 PM", "Sun 1 PM"],
       seats: 1,
       ratingAverage: 4.7,
-      ratingCount: 10,
-      bookingsCount: 14,
-      savesCount: 21
+      ratingCount: 12,
+      bookingsCount: 17,
+      savesCount: 33,
+      isFeatured: true
     }
   ]);
 
@@ -167,6 +203,7 @@ async function seed() {
     amount: split.amount,
     commission: split.platformCommission,
     payout: split.trainerPayout,
+    provider: "Razorpay / UPI Simulation",
     transactionId: `SKZ-DEMO-${Date.now()}`,
     status: "PAID"
   });

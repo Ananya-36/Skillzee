@@ -12,7 +12,8 @@
     "dev:api": "npm run dev --workspace @skillzee/api",
     "build": "npm run build --workspace @skillzee/api && npm run build --workspace @skillzee/web",
     "lint": "npm run lint --workspace @skillzee/api && npm run lint --workspace @skillzee/web",
-    "seed": "npm run seed --workspace @skillzee/api"
+    "seed": "npm run seed --workspace @skillzee/api",
+    "mock-data": "npm run seed --workspace @skillzee/api"
   },
   "devDependencies": {
     "concurrently": "^9.2.0"

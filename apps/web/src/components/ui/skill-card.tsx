@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { Clock3, Heart, IndianRupee, MessageCircleMore, Star } from "lucide-react";
+import { ArrowRight, Clock3, Heart, IndianRupee, Star } from "lucide-react";
 import { formatCurrency } from "@/lib/format";
-import { buildEmailLink, openWhatsAppChat } from "@/lib/communication";
+import { buildEmailLink } from "@/lib/communication";
+import { getAvatarSrc, uniqueStrings } from "@/lib/presentation";
+import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 import type { Skill } from "@/types";
 
 type SkillCardProps = {
@@ -10,6 +12,9 @@ type SkillCardProps = {
 };
 
 export function SkillCard({ skill, compact = false }: SkillCardProps) {
+  const trainerWhatsApp = skill.trainer.whatsAppNumber || skill.trainer.phone;
+  const visibleOutcomes = uniqueStrings(skill.outcomes ?? []).slice(0, compact ? 2 : 3);
+
   return (
     <article className={`skill-card ${compact ? "skill-card--compact" : ""}`}>
       <div className="skill-card__meta">
@@ -25,12 +30,25 @@ export function SkillCard({ skill, compact = false }: SkillCardProps) {
       </div>
 
       <div className="skill-card__trainer">
-        <img src={skill.trainer.avatarUrl} alt={skill.trainer.name} />
+        <img src={getAvatarSrc(skill.trainer.name, skill.trainer.avatarUrl)} alt={skill.trainer.name} />
         <div>
-          <strong>{skill.trainer.name}</strong>
+          <div className="inline-name">
+            <strong>{skill.trainer.name}</strong>
+            <WhatsAppLink phone={trainerWhatsApp} skillTitle={skill.title} iconOnly className="skill-card__whatsapp" />
+          </div>
           <span>{skill.trainer.college}</span>
         </div>
       </div>
+
+      {visibleOutcomes.length ? (
+        <div className="pill-row">
+          {visibleOutcomes.map((outcome, index) => (
+            <span key={`${outcome}-${index}`} className="pill">
+              {outcome}
+            </span>
+          ))}
+        </div>
+      ) : null}
 
       <div className="skill-card__stats">
         <span>
@@ -47,22 +65,20 @@ export function SkillCard({ skill, compact = false }: SkillCardProps) {
       <div className="skill-card__actions">
         <Link href={`/skills/${skill._id}`} className="button button--primary">
           View details
+          <ArrowRight size={16} />
         </Link>
-        <button
-          type="button"
-          className="button button--ghost"
-          onClick={() => openWhatsAppChat(skill.trainer.phone)}
-        >
-          <MessageCircleMore size={16} />
-          WhatsApp
-        </button>
+        <Link href={`/booking?skillId=${skill._id}`} className="button button--ghost">
+          Book now
+        </Link>
         <a
           className="button button--ghost"
           href={buildEmailLink(
             skill.trainer.email,
-            `Skillzee enquiry for ${skill.title}`,
-            "Hi, I booked your session on Skillzee and had a doubt."
+            `SkillSwap enquiry for ${skill.title}`,
+            `Hi, I am interested in your ${skill.title} class on SkillSwap.`
           )}
+          target="_blank"
+          rel="noreferrer"
         >
           Email
         </a>

@@ -5,14 +5,14 @@ import { AuthProvider } from "@/hooks/use-auth";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Skillzee",
-  description: "Where skills create value",
+  title: "SkillSwap",
+  description: "Peer-to-peer student marketplace for learning, teaching, booking, chat, and payouts.",
   manifest: "/manifest.webmanifest"
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         <AuthProvider>
           <ClientBoot />

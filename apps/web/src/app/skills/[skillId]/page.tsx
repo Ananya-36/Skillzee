@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { CalendarClock, MessageCircleMore, Star } from "lucide-react";
+import { CalendarClock, Mail, Star } from "lucide-react";
+import { WhatsAppLink } from "@/components/ui/whatsapp-link";
 import { apiRequest } from "@/lib/api";
-import { buildEmailLink, openWhatsAppChat } from "@/lib/communication";
+import { buildEmailLink, buildMeetingLink } from "@/lib/communication";
 import { fallbackReviews, fallbackSkills } from "@/lib/mock-data";
 import { formatCurrency } from "@/lib/format";
+import { getAvatarSrc, uniqueStrings } from "@/lib/presentation";
 import type { Review, Skill } from "@/types";
 
 export default function SkillDetailsPage() {
@@ -27,6 +29,10 @@ export default function SkillDetailsPage() {
         setReviews(fallbackReviews);
       });
   }, [params.skillId]);
+
+  const trainerWhatsApp = skill.trainer.whatsAppNumber || skill.trainer.phone;
+  const visibleSessionTopics = uniqueStrings([...(skill.tags ?? []), ...(skill.outcomes ?? [])]);
+  const visibleTrainerBadges = uniqueStrings(skill.trainer.badges ?? []);
 
   return (
     <section className="container page-header">
@@ -48,8 +54,8 @@ export default function SkillDetailsPage() {
           <div className="glass-card">
             <h3>What this session includes</h3>
             <div className="pill-row" style={{ marginTop: 12 }}>
-              {(skill.tags ?? []).map((tag) => (
-                <span key={tag} className="pill">
+              {visibleSessionTopics.map((tag, index) => (
+                <span key={`${tag}-${index}`} className="pill">
                   {tag}
                 </span>
               ))}
@@ -75,7 +81,7 @@ export default function SkillDetailsPage() {
               {reviews.map((review) => (
                 <article key={review._id} className="timeline-card">
                   <div className="skill-card__trainer">
-                    <img src={review.learner.avatarUrl} alt={review.learner.name} />
+                    <img src={getAvatarSrc(review.learner.name, review.learner.avatarUrl)} alt={review.learner.name} />
                     <div>
                       <strong>{review.learner.name}</strong>
                       <span>{review.learner.college}</span>
@@ -91,13 +97,23 @@ export default function SkillDetailsPage() {
 
         <aside className="panel stack">
           <div className="skill-card__trainer">
-            <img src={skill.trainer.avatarUrl} alt={skill.trainer.name} />
+            <img src={getAvatarSrc(skill.trainer.name, skill.trainer.avatarUrl)} alt={skill.trainer.name} />
             <div>
-              <h3>{skill.trainer.name}</h3>
+              <div className="inline-name">
+                <h3>{skill.trainer.name}</h3>
+                <WhatsAppLink phone={trainerWhatsApp} skillTitle={skill.title} iconOnly />
+              </div>
               <p>{skill.trainer.college}</p>
             </div>
           </div>
           <p>{skill.trainer.bio}</p>
+          <div className="pill-row">
+            {visibleTrainerBadges.map((badge, index) => (
+              <span key={`${badge}-${index}`} className="pill">
+                {badge}
+              </span>
+            ))}
+          </div>
           <div className="skill-card__stats">
             <span>{skill.trainer.trainerProfile.completedSessions} sessions</span>
             <span>{skill.trainer.trainerProfile.averageRating.toFixed(1)} rating</span>
@@ -105,20 +121,25 @@ export default function SkillDetailsPage() {
           <Link href={`/booking?skillId=${skill._id}`} className="button button--primary">
             Book this session
           </Link>
-          <button type="button" className="button button--ghost" onClick={() => openWhatsAppChat(skill.trainer.phone)}>
-            <MessageCircleMore size={16} />
-            Chat on WhatsApp
-          </button>
+          <WhatsAppLink phone={trainerWhatsApp} skillTitle={skill.title} label="Chat on WhatsApp" />
           <a
             className="button button--ghost"
             href={buildEmailLink(
               skill.trainer.email,
-              `Skillzee session question: ${skill.title}`,
-              "Hi, I booked your session on Skillzee and had a doubt."
+              `SkillSwap session question: ${skill.title}`,
+              `Hi, I am interested in your ${skill.title} class on SkillSwap.`
             )}
+            target="_blank"
+            rel="noreferrer"
           >
+            <Mail size={16} />
             Contact via Email
           </a>
+          {skill.sessionType === "GOOGLE_MEET" ? (
+            <a className="button button--ghost" href={buildMeetingLink(skill.meetLink)} target="_blank" rel="noreferrer">
+              Preview Google Meet room
+            </a>
+          ) : null}
         </aside>
       </div>
     </section>

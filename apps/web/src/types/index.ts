@@ -21,11 +21,13 @@ export type User = {
   name: string;
   email: string;
   phone: string;
+  whatsAppNumber: string;
   college: string;
   bio: string;
   avatarUrl: string;
   rolePreference: RolePreference;
   interests: string[];
+  skills: string[];
   badges: string[];
   points: number;
   wallet: Wallet;
@@ -39,6 +41,7 @@ export type Skill = {
   title: string;
   description: string;
   category: string;
+  outcomes: string[];
   tags: string[];
   price: number;
   durationMinutes: number;
@@ -120,4 +123,10 @@ export type AdminOverview = {
   grossRevenue: number;
   platformRevenue: number;
   topSkills: Skill[];
+};
+
+export type AssistantResponse = {
+  reply: string;
+  recommendations: Skill[];
+  provider: "fallback" | "openai" | "gemini";
 };

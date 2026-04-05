@@ -1,17 +1,75 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ApiError } from "@/lib/api";
 import { useAuth } from "@/hooks/use-auth";
 
-const interestOptions = ["Design", "Analytics", "Communication", "Coding", "Marketing"];
+const interestOptions = [
+  "Design",
+  "Analytics",
+  "Communication",
+  "Coding",
+  "Marketing",
+  "Video Editing",
+  "UI/UX",
+  "Data Science",
+  "Public Speaking",
+  "Content Creation",
+  "Branding",
+  "Web Development",
+  "Python",
+  "Finance",
+  "Excel",
+  "Product Management",
+  "Interview Prep",
+  "Motion Design"
+];
 
 export default function AuthPage() {
+  return (
+    <Suspense fallback={<section className="container page-header"><div className="panel">Loading sign in...</div></section>}>
+      <AuthPageContent />
+    </Suspense>
+  );
+}
+
+function AuthPageContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { login, register } = useAuth();
-  const [mode, setMode] = useState<"login" | "register">("register");
+  const requestedMode = searchParams.get("mode") === "login" ? "login" : "register";
+  const [mode, setMode] = useState<"login" | "register">(requestedMode);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>(["Design", "Analytics"]);
+
+  useEffect(() => {
+    setMode(requestedMode);
+  }, [requestedMode]);
+
+  function formatAuthError(error: unknown, fallbackMessage: string) {
+    if (error instanceof ApiError) {
+      const fieldErrors = (error.details?.issues as { fieldErrors?: Record<string, string[]> } | undefined)?.fieldErrors;
+      const firstFieldError = fieldErrors
+        ? Object.values(fieldErrors)
+            .flat()
+            .find(Boolean)
+        : null;
+
+      return firstFieldError || error.message || fallbackMessage;
+    }
+
+    if (error instanceof TypeError && error.message.includes("Failed to fetch")) {
+      return "The site could not reach the SkillSwap API. Refresh the page and try again.";
+    }
+
+    if (error instanceof Error) {
+      return error.message;
+    }
+
+    return fallbackMessage;
+  }
 
   async function handleLogin(formData: FormData) {
     setLoading(true);
@@ -21,7 +79,7 @@ export default function AuthPage() {
       await login(String(formData.get("email")), String(formData.get("password")));
       router.push("/dashboard");
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Login failed");
+      setMessage(formatAuthError(error, "Login failed"));
     } finally {
       setLoading(false);
     }
@@ -30,10 +88,9 @@ export default function AuthPage() {
   async function handleRegister(formData: FormData) {
     setLoading(true);
     setMessage("");
-
-    const interests = formData
-      .getAll("interests")
-      .map((item) => String(item))
+    const skills = String(formData.get("skills") ?? "")
+      .split(",")
+      .map((item) => item.trim())
       .filter(Boolean);
 
     try {
@@ -41,43 +98,56 @@ export default function AuthPage() {
         name: String(formData.get("name")),
         email: String(formData.get("email")),
         phone: String(formData.get("phone")),
+        whatsAppNumber: String(formData.get("whatsAppNumber") || formData.get("phone")),
         college: String(formData.get("college")),
         password: String(formData.get("password")),
         bio: String(formData.get("bio")),
         avatarUrl: String(formData.get("avatarUrl")),
         rolePreference: String(formData.get("rolePreference") || "BOTH"),
-        interests
+        interests: selectedInterests,
+        skills
       });
       router.push("/dashboard");
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Registration failed");
+      setMessage(formatAuthError(error, "Registration failed"));
     } finally {
       setLoading(false);
     }
+  }
+
+  function switchMode(nextMode: "login" | "register") {
+    setMode(nextMode);
+    router.replace(`/auth?mode=${nextMode}`);
+  }
+
+  function toggleInterest(interest: string) {
+    setSelectedInterests((current) =>
+      current.includes(interest) ? current.filter((item) => item !== interest) : [...current, interest]
+    );
   }
 
   return (
     <section className="container page-header">
       <div className="split-layout">
         <div className="panel">
-          <span className="eyebrow">Start using Skillzee</span>
-          <h1>Join as a learner, trainer, or both.</h1>
+          <span className="eyebrow">Start using SkillSwap</span>
+          <h1>Join once and switch between Learner and Provider dashboards.</h1>
           <p>
-            Profiles are designed for real booking flows, including WhatsApp-ready phone numbers, bios,
-            profile photos, interests, and a role preference that matches how students use the platform.
+            Your account stores the exact fields the marketplace needs: name, email, WhatsApp number,
+            bio, interests, skills, and a role preference that can power both sides of the platform.
           </p>
           <div className="stack">
             <article className="timeline-card">
-              <h3>JWT-based auth</h3>
-              <p>Fast session handling for the frontend and Express API.</p>
+              <h3>Dual-profile logic</h3>
+              <p>One account can learn, teach, book, rate, earn, and chat without creating a second profile.</p>
             </article>
             <article className="timeline-card">
-              <h3>Communication-first profile</h3>
-              <p>Phone number powers WhatsApp handoff and email stays available as a fallback.</p>
+              <h3>WhatsApp-ready from day one</h3>
+              <p>Your WhatsApp number is saved separately so every class card can open a direct conversation instantly.</p>
             </article>
             <article className="timeline-card">
-              <h3>Career-ready presence</h3>
-              <p>Bio, college, badges, ratings, and reviews help build trust quickly.</p>
+              <h3>Presentation-friendly data</h3>
+              <p>Profiles show badges, ratings, skills, session history, and wallet metrics like a real marketplace.</p>
             </article>
           </div>
         </div>
@@ -87,18 +157,22 @@ export default function AuthPage() {
             <button
               type="button"
               className={`button ${mode === "register" ? "button--primary" : "button--ghost"}`}
-              onClick={() => setMode("register")}
+              onClick={() => switchMode("register")}
             >
               Create account
             </button>
             <button
               type="button"
               className={`button ${mode === "login" ? "button--primary" : "button--ghost"}`}
-              onClick={() => setMode("login")}
+              onClick={() => switchMode("login")}
             >
               Sign in
             </button>
           </div>
+
+          {searchParams.get("switch") === "1" && mode === "login" ? (
+            <p className="muted">You were signed out so you can log into a different account.</p>
+          ) : null}
 
           {mode === "login" ? (
             <form
@@ -142,42 +216,65 @@ export default function AuthPage() {
                   <input name="phone" placeholder="919876543210" required />
                 </label>
                 <label>
-                  College
-                  <input name="college" required />
+                  WhatsApp number
+                  <input name="whatsAppNumber" placeholder="919876543210" required />
                 </label>
               </div>
               <div className="form-grid form-grid--two">
                 <label>
+                  College
+                  <input name="college" required />
+                </label>
+                <label>
                   Role
                   <select name="rolePreference" defaultValue="BOTH">
                     <option value="LEARNER">Learner</option>
-                    <option value="TRAINER">Trainer</option>
+                    <option value="TRAINER">Provider</option>
                     <option value="BOTH">Both</option>
                   </select>
                 </label>
+              </div>
+              <div className="form-grid form-grid--two">
                 <label>
                   Password
                   <input name="password" type="password" required />
                 </label>
+                <label>
+                  Profile photo URL
+                  <input name="avatarUrl" type="url" placeholder="https://..." />
+                </label>
               </div>
               <label>
-                Profile photo URL
-                <input name="avatarUrl" type="url" placeholder="https://..." />
-              </label>
-              <label>
                 Bio
-                <textarea name="bio" placeholder="Tell learners and trainers what you can teach or want to learn." />
+                <textarea name="bio" placeholder="Tell learners and providers what you can teach or want to learn." />
               </label>
               <label>
-                Interests
-                <select name="interests" multiple size={interestOptions.length}>
-                  {interestOptions.map((interest) => (
-                    <option key={interest} value={interest}>
-                      {interest}
-                    </option>
-                  ))}
-                </select>
+                Skills
+                <input name="skills" placeholder="Figma, Canva, Video Editing, Excel" />
               </label>
+              <div className="form-grid">
+                <label>Interests</label>
+                <p className="muted" style={{ margin: 0 }}>
+                  Choose one or more areas so learner recommendations can match your interests and paid classes.
+                </p>
+                <div className="interest-picker">
+                  {interestOptions.map((interest) => {
+                    const selected = selectedInterests.includes(interest);
+
+                    return (
+                      <button
+                        key={interest}
+                        type="button"
+                        className={`interest-chip ${selected ? "interest-chip--active" : ""}`}
+                        onClick={() => toggleInterest(interest)}
+                        aria-pressed={selected}
+                      >
+                        {interest}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
               <button className="button button--primary" type="submit" disabled={loading}>
                 {loading ? "Creating account..." : "Create account"}
               </button>

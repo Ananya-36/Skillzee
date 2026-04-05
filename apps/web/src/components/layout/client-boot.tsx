@@ -38,7 +38,7 @@ export function ClientBoot() {
     };
 
     const handleChat = (item: Message) => {
-      showBrowserNotification("New message on Skillzee", item.content);
+      showBrowserNotification("New message on SkillSwap", item.content);
     };
 
     socket.on("notification:new", handleNotification);

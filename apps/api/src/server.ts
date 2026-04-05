@@ -6,21 +6,19 @@ import helmet from "helmet";
 import morgan from "morgan";
 import { connectDatabase } from "./config/db.js";
 import { env } from "./config/env.js";
+import { getAllowedOrigins, isAllowedOrigin } from "./lib/origins.js";
 import { errorHandler } from "./middleware/error.js";
 import router from "./routes/index.js";
 import { sendUpcomingSessionReminders } from "./services/reminder.service.js";
 import { createSocketServer } from "./services/socket.service.js";
 
 const app = express();
-const allowedOrigins = (env.CLIENT_URLS ?? env.CLIENT_URL)
-  .split(",")
-  .map((origin) => origin.trim())
-  .filter(Boolean);
+const allowedOrigins = getAllowedOrigins();
 
 app.use(
   cors({
     origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (isAllowedOrigin(origin)) {
         return callback(null, true);
       }
 
@@ -60,7 +58,7 @@ async function bootstrap() {
   }
 
   server.listen(env.PORT, () => {
-    console.log(`Skillzee API listening on port ${env.PORT}`);
+    console.log(`SkillSwap API listening on port ${env.PORT}`);
     console.log(`Allowed CORS origins: ${allowedOrigins.join(", ")}`);
   });
 }

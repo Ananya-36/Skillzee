@@ -9,11 +9,14 @@ import { User } from "../models/User.js";
 import { getRecommendedSkillsForUser } from "../services/recommendation.service.js";
 
 const router = Router();
+const trainerPreviewSelect =
+  "name email phone whatsAppNumber avatarUrl college bio trainerProfile badges skills";
 
 const createSkillSchema = z.object({
   title: z.string().min(3),
   description: z.string().min(20),
   category: z.string().min(2),
+  outcomes: z.array(z.string()).default([]),
   tags: z.array(z.string()).default([]),
   price: z.coerce.number().positive(),
   durationMinutes: z.coerce.number().min(15),
@@ -28,7 +31,7 @@ const createSkillSchema = z.object({
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const { q, category, mode, maxPrice, sort = "trending" } = req.query;
+    const { q, category, mode, maxPrice, sort = "trending", trainerId } = req.query;
     const query: Record<string, unknown> = {};
 
     if (q) {
@@ -51,6 +54,10 @@ router.get(
       query.price = { $lte: Number(maxPrice) };
     }
 
+    if (trainerId) {
+      query.trainer = trainerId;
+    }
+
     const sortMap: Record<string, Record<string, 1 | -1>> = {
       trending: { bookingsCount: -1, ratingAverage: -1 },
       rating: { ratingAverage: -1, ratingCount: -1 },
@@ -60,7 +67,7 @@ router.get(
 
     const skills = await Skill.find(query)
       .sort(sortMap[String(sort)] ?? sortMap.trending)
-      .populate("trainer", "name avatarUrl college trainerProfile")
+      .populate("trainer", trainerPreviewSelect)
       .lean();
 
     res.json(skills);
@@ -73,7 +80,7 @@ router.get(
     const skills = await Skill.find()
       .sort({ isFeatured: -1, bookingsCount: -1, ratingAverage: -1 })
       .limit(6)
-      .populate("trainer", "name avatarUrl college trainerProfile")
+      .populate("trainer", trainerPreviewSelect)
       .lean();
 
     res.json(skills);
@@ -100,7 +107,7 @@ router.get(
         points: -1
       })
       .limit(8)
-      .select("name avatarUrl college trainerProfile badges points bio")
+      .select("name email phone whatsAppNumber avatarUrl college trainerProfile badges points bio skills")
       .lean();
 
     res.json(trainers);
@@ -111,7 +118,7 @@ router.get(
   "/:skillId",
   asyncHandler(async (req, res) => {
     const skill = await Skill.findById(req.params.skillId)
-      .populate("trainer", "name email phone avatarUrl college bio trainerProfile badges")
+      .populate("trainer", trainerPreviewSelect)
       .lean();
 
     if (!skill) {
@@ -138,7 +145,7 @@ router.post(
       trainer: req.user!.sub
     });
 
-    const populated = await skill.populate("trainer", "name avatarUrl college trainerProfile");
+    const populated = await skill.populate("trainer", trainerPreviewSelect);
     res.status(201).json(populated);
   })
 );

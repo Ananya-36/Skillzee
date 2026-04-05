@@ -1,3 +1,4 @@
+import { env } from "../config/env.js";
 import { Notification } from "../models/Notification.js";
 import { User } from "../models/User.js";
 import { sendEmail } from "./email.service.js";
@@ -16,6 +17,8 @@ type CreateNotificationInput = {
 };
 
 export async function createNotification(input: CreateNotificationInput) {
+  const actionUrl =
+    input.actionUrl && input.actionUrl.startsWith("/") ? `${env.CLIENT_URL}${input.actionUrl}` : input.actionUrl;
   const notification = await Notification.create({
     user: input.userId,
     type: input.type,
@@ -40,7 +43,7 @@ export async function createNotification(input: CreateNotificationInput) {
       await sendEmail({
         to: user.email,
         subject: input.emailSubject,
-        html: `<p>Hi ${user.name},</p><p>${input.body}</p><p><a href="${input.actionUrl ?? "#"}">Open Skillzee</a></p>`
+        html: `<p>Hi ${user.name},</p><p>${input.body}</p><p><a href="${actionUrl ?? "#"}">Open SkillSwap</a></p>`
       });
     }
   }

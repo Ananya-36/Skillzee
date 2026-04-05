@@ -1,5 +1,6 @@
 import { Router } from "express";
 import adminRouter from "./admin.js";
+import assistantRouter from "./assistant.js";
 import authRouter from "./auth.js";
 import bookingsRouter from "./bookings.js";
 import chatRouter from "./chat.js";
@@ -10,6 +11,7 @@ import skillsRouter from "./skills.js";
 const router = Router();
 
 router.use("/auth", authRouter);
+router.use("/assistant", assistantRouter);
 router.use("/skills", skillsRouter);
 router.use("/bookings", bookingsRouter);
 router.use("/chat", chatRouter);

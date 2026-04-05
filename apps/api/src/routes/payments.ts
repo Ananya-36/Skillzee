@@ -10,7 +10,10 @@ import { User } from "../models/User.js";
 const router = Router();
 
 const simulateSchema = z.object({
-  bookingId: z.string().min(1)
+  bookingId: z.string().min(1),
+  provider: z
+    .enum(["Razorpay / UPI Simulation", "UPI Collect Simulation", "SkillSwap Wallet Simulation"])
+    .default("Razorpay / UPI Simulation")
 });
 
 router.get(
@@ -46,9 +49,11 @@ router.post(
 
     const payment = await Payment.findOneAndUpdate(
       { booking: booking._id },
-      { status: "PAID" },
+      { status: "PAID", provider: input.provider },
       { new: true }
     );
+    booking.paymentStatus = "PAID";
+    await booking.save();
 
     res.json(payment);
   })

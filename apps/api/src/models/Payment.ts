@@ -9,7 +9,7 @@ const paymentSchema = new Schema(
     amount: { type: Number, required: true },
     commission: { type: Number, required: true },
     payout: { type: Number, required: true },
-    provider: { type: String, default: "Skillzee Wallet" },
+    provider: { type: String, default: "SkillSwap Wallet" },
     transactionId: { type: String, default: "" },
     status: { type: String, enum: paymentStatusOptions, default: "PAID" }
   },

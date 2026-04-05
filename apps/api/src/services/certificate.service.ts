@@ -16,7 +16,7 @@ export async function generateCertificatePdf(input: {
 
     doc.rect(0, 0, doc.page.width, doc.page.height).fill("#0b1020");
     doc.fillColor("#f8fafc");
-    doc.fontSize(30).text("Skillzee Certificate of Completion", { align: "center" });
+    doc.fontSize(30).text("SkillSwap Certificate of Completion", { align: "center" });
     doc.moveDown();
     doc.fontSize(14).fillColor("#94a3b8").text("Where skills create value", { align: "center" });
     doc.moveDown(2);
@@ -28,7 +28,7 @@ export async function generateCertificatePdf(input: {
     doc.moveDown(2);
     doc.fillColor("#60a5fa").text(`Completed on ${format(input.completedAt, "PPP")}`, { align: "center" });
     doc.moveDown(4);
-    doc.fillColor("#e2e8f0").fontSize(12).text("Issued by Skillzee", { align: "center" });
+    doc.fillColor("#e2e8f0").fontSize(12).text("Issued by SkillSwap", { align: "center" });
     doc.end();
   });
 }

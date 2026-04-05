@@ -7,7 +7,7 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("push", (event) => {
-  const data = event.data ? event.data.json() : { title: "Skillzee", body: "You have a new update." };
+  const data = event.data ? event.data.json() : { title: "SkillSwap", body: "You have a new update." };
   event.waitUntil(
     self.registration.showNotification(data.title, {
       body: data.body,

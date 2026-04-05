@@ -2,13 +2,13 @@ import Link from "next/link";
 
 export function BrandMark() {
   return (
-    <Link href="/" className="brand-mark" aria-label="Skillzee home">
+    <Link href="/" className="brand-mark" aria-label="SkillSwap home">
       <span className="brand-mark__logo" aria-hidden="true">
         S
       </span>
       <span>
-        <strong>Skillzee</strong>
-        <small>Where skills create value</small>
+        <strong>SkillSwap</strong>
+        <small>Teach. Learn. Earn.</small>
       </span>
     </Link>
   );

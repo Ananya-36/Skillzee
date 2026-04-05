@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Bell, LayoutDashboard, LogOut, UserCircle2 } from "lucide-react";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { BrandMark } from "@/components/ui/brand-mark";
 import { useAuth } from "@/hooks/use-auth";
 
@@ -13,7 +15,13 @@ const navLinks = [
 ];
 
 export function Navbar() {
+  const router = useRouter();
   const { user, logout } = useAuth();
+
+  function handleSwitchAccount() {
+    logout();
+    router.push("/auth?mode=login&switch=1");
+  }
 
   return (
     <header className="site-header">
@@ -27,6 +35,7 @@ export function Navbar() {
           ))}
         </nav>
         <div className="site-actions">
+          <ThemeToggle />
           <Link href="/dashboard" className="icon-link" aria-label="Dashboard">
             <LayoutDashboard size={18} />
           </Link>
@@ -37,9 +46,15 @@ export function Navbar() {
             <UserCircle2 size={16} />
             {user?.name?.split(" ")[0] ?? "Profile"}
           </Link>
-          <Link href="/auth" className="button button--primary button--sm">
-            {user ? "Switch account" : "Get started"}
-          </Link>
+          {user ? (
+            <button type="button" className="button button--primary button--sm" onClick={handleSwitchAccount}>
+              Switch account
+            </button>
+          ) : (
+            <Link href="/auth?mode=register" className="button button--primary button--sm">
+              Get started
+            </Link>
+          )}
           {user ? (
             <button type="button" className="icon-link" aria-label="Logout" onClick={logout}>
               <LogOut size={18} />

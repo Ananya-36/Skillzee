@@ -27,12 +27,14 @@ export type UserDocument = {
   name: string;
   email: string;
   phone: string;
+  whatsAppNumber: string;
   college: string;
   passwordHash: string;
   bio: string;
   avatarUrl: string;
   rolePreference: (typeof roleOptions)[number];
   interests: string[];
+  skills: string[];
   favoriteSkills: Array<Types.ObjectId>;
   badges: string[];
   points: number;
@@ -60,12 +62,14 @@ const userSchema = new Schema<UserDocument>(
     name: { type: String, required: true, trim: true },
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
     phone: { type: String, required: true, trim: true },
+    whatsAppNumber: { type: String, required: true, trim: true },
     college: { type: String, default: "" },
     passwordHash: { type: String, required: true },
     bio: { type: String, default: "" },
     avatarUrl: { type: String, default: "" },
     rolePreference: { type: String, enum: roleOptions, default: "BOTH" },
     interests: [{ type: String }],
+    skills: [{ type: String }],
     favoriteSkills: [{ type: Schema.Types.ObjectId, ref: "Skill" }],
     badges: [{ type: String }],
     points: { type: Number, default: 0 },
